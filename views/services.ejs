@@ -1,0 +1,319 @@
+<%- include('partials/header') %>
+
+<!-- EXTERNAL LIBRARIES -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<!-- CUSTOM CSS FOR EFFECTS -->
+<style>
+    /* Lottie Loader */
+    #loader { transition: opacity 0.6s ease-out; }
+    
+    /* Kinetic Typography */
+    .kinetic-text {
+        font-size: 8rem;
+        font-weight: 900;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.08);
+        animation: scrollText 30s linear infinite;
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+    }
+    @keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* Neumorphism */
+    .neumorphic {
+        background: #e0e5ec;
+        box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.6);
+        border-radius: 24px;
+    }
+    .neumorphic-inset {
+        background: #e0e5ec;
+        box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px rgba(255,255,255, 0.6);
+        border-radius: 24px;
+    }
+
+    /* Glassmorphism */
+    .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Floating Animations */
+    .animate-float-slow { animation: float 8s ease-in-out infinite; }
+    .animate-float-fast { animation: float 5s ease-in-out infinite reverse; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+</style>
+
+<!-- PRELOADER -->
+<div id="loader" class="fixed inset-0 z-[100] bg-[#e0e5ec] flex flex-col items-center justify-center">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_usmfx6bp.json" background="transparent" speed="1.5" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
+    <h2 class="text-[#0d47a1] font-bold tracking-widest uppercase mt-4 animate-pulse">Loading Services...</h2>
+</div>
+
+<main class="mt-[72px] overflow-x-hidden bg-[#e0e5ec]">
+    
+    <!-- 1. HERO SECTION (Inner Page Height) -->
+    <section class="relative min-h-[60vh] bg-fixed bg-center bg-cover flex items-center overflow-hidden py-20" 
+             style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0a192f]/80 to-transparent z-0"></div>
+        
+        <!-- Kinetic Typography -->
+        <div class="absolute top-1/3 left-0 w-full overflow-hidden flex z-0 opacity-40 pointer-events-none">
+            <div class="kinetic-text">
+                EXPERT ADVISORY • FINANCIAL ARCHITECTURE • BUSINESS CONTINUITY • WEALTH
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+            <div class="inline-flex items-center bg-[#0d47a1]/90 text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-6 tracking-widest shadow-inner border border-blue-400/30 sr-bottom">
+                <span class="w-2 h-2 rounded-full bg-blue-300 mr-3 animate-pulse"></span>
+                Our Expertise
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg sr-bottom">
+                Solutions Engineered For <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">Scale & Security.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-blue-50 max-w-3xl mx-auto font-light leading-relaxed sr-bottom delay-100">
+                Explore our comprehensive suite of financial services designed to protect your business assets, minimize tax liabilities, and compound your personal wealth.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. SERVICE 1: LEGACY PROTECTION (Text Left, Image Right) -->
+    <section class="py-20 lg:py-28 bg-[#e0e5ec] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                
+                <!-- Text -->
+                <div class="sr-left order-2 lg:order-1">
+                    <div class="w-16 h-16 rounded-2xl bg-white shadow-[0_10px_20px_rgba(13,71,161,0.1)] flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-3xl text-[#0d47a1]"></i>
+                    </div>
+                    <span class="text-[#0d47a1] font-extrabold tracking-widest uppercase text-sm mb-2 block">Flagship Solution</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                        Legacy Protection & <br>Business Continuity
+                    </h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
+                        What happens to your empire if you are no longer there to run it? We structure high-value life covers (up to ₹200 Cr) that act as an absolute financial safety net for your family and your company's stakeholders.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <i class="fas fa-check text-green-600 mr-3 bg-green-100 p-1 rounded-full text-xs"></i> 
+                            Debt Protection & Keyman Insurance
+                        </li>
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <i class="fas fa-check text-green-600 mr-3 bg-green-100 p-1 rounded-full text-xs"></i> 
+                            Immediate Liquidity for Stakeholder Buyouts
+                        </li>
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <i class="fas fa-check text-green-600 mr-3 bg-green-100 p-1 rounded-full text-xs"></i> 
+                            Securing Family Lifestyle Indefinitely
+                        </li>
+                    </ul>
+                    <a href="/contact" class="inline-flex items-center text-[#0d47a1] font-bold text-lg hover:text-blue-800 transition border-b-2 border-[#0d47a1] pb-1">
+                        Secure Your Cover Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Image with Neumorphic Frame -->
+                <div class="sr-right order-1 lg:order-2">
+                    <div class="neumorphic p-4">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-xl shadow-inner">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICE 2: TAX STRATEGIES (Image Left, Text Right) -->
+    <section class="py-20 lg:py-28 bg-white relative rounded-[3rem] shadow-sm z-10 -mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                
+                <!-- Image -->
+                <div class="sr-left order-1">
+                    <div class="relative">
+                        <!-- Decorative Abstract Blob -->
+                        <div class="absolute -top-10 -left-10 w-48 h-48 bg-blue-100 rounded-full blur-[40px] z-0"></div>
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" class="relative z-10 w-full h-[450px] object-cover rounded-[2rem] shadow-2xl animate-float-slow">
+                        
+                        <!-- Floating Glass Card -->
+                        <div class="absolute -bottom-8 -right-4 md:-right-8 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-xl z-20 w-4/5 md:w-2/3">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-chart-pie text-green-500 text-2xl mr-3"></i>
+                                <h5 class="font-bold text-gray-900">Capital Saved</h5>
+                            </div>
+                            <p class="text-xs text-gray-500 font-semibold mb-2">Quarterly Projection</p>
+                            <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-green-500 w-[85%] h-full rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <div class="sr-right order-2">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
+                        <i class="fas fa-file-invoice-dollar text-3xl text-[#0d47a1]"></i>
+                    </div>
+                    <span class="text-[#0d47a1] font-extrabold tracking-widest uppercase text-sm mb-2 block">Wealth Preservation</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                        Zero Tax Leakage & <br>Compliance Mastery
+                    </h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
+                        Stop bleeding your hard-earned capital. We implement highly advanced, 100% compliant corporate structuring to minimize your tax liabilities. By restructuring your cash flows and investment vehicles, we maximize your investable capital.
+                    </p>
+                    <p class="text-gray-600 mb-8 text-lg leading-relaxed text-justify">
+                        Our auditing team works proactively, ensuring your documentation and corporate filings are always audit-ready, keeping you strictly within the legal frameworks of the latest financial laws.
+                    </p>
+                    <a href="/contact" class="bg-[#0d47a1] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition shadow-[0_10px_20px_rgba(13,71,161,0.3)] hover:-translate-y-1 inline-block">
+                        Optimize Your Taxes
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SERVICE 3: WEALTH CREATION (Text Left, Image Right) -->
+    <section class="py-20 lg:py-28 bg-[#e0e5ec] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                
+                <!-- Text -->
+                <div class="sr-left order-2 lg:order-1">
+                    <div class="w-16 h-16 rounded-2xl bg-white shadow-[0_10px_20px_rgba(13,71,161,0.1)] flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-3xl text-[#0d47a1]"></i>
+                    </div>
+                    <span class="text-[#0d47a1] font-extrabold tracking-widest uppercase text-sm mb-2 block">Capital Growth</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                        Exponential Wealth <br>Creation
+                    </h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
+                        Through data-driven forecasting, we architect multi-decade investment plans that turn today's profit into tomorrow's empire. We analyze market trends to structure Lumpsum and Systematic Investment Plans (SIPs) that beat inflation consistently.
+                    </p>
+                    
+                    <div class="neumorphic-inset p-6 mb-8 mt-4">
+                        <h4 class="font-bold text-gray-900 mb-2">Try Our Premium Tools</h4>
+                        <p class="text-gray-600 text-sm mb-4">Forecast your capital growth with our limitless calculation engine and generate instant PDF reports.</p>
+                        <div class="flex space-x-4">
+                            <a href="/tools" class="text-sm font-bold text-[#0d47a1] bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition">SIP Calculator</a>
+                            <a href="/tools" class="text-sm font-bold text-gray-700 bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition">Lumpsum Calculator</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image with Neumorphic Frame -->
+                <div class="sr-right order-1 lg:order-2">
+                    <div class="neumorphic p-4">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-xl shadow-inner">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. OUR PROCESS (4 Steps Neumorphic Grid) -->
+    <section class="py-24 bg-white relative border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 sr-bottom">
+                <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">How We Work</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">The Advisory Framework</h2>
+                <p class="text-gray-600 text-lg">A systematic, transparent, and legally sound process to structure your financial future.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom">
+                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">1</div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Discovery</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Deep-dive analysis of your current business valuation, cash flows, and existing liabilities.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom delay-100">
+                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">2</div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
+                            <i class="fas fa-chess-knight"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Strategy</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Designing customized tax-saving structures and identifying the exact life cover (e.g. ₹200 Cr) required.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom delay-200">
+                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">3</div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Execution</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Legally binding documentation, policy issuance, and seamless integration into your accounting.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom delay-300">
+                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">4</div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
+                            <i class="fas fa-level-up-alt"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Growth</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Continuous quarterly monitoring, SIP adjustments, and compliance audits to ensure permanent security.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PARALLAX CTA DIVIDER -->
+    <section class="relative py-24 md:py-32 bg-fixed bg-center bg-cover flex items-center shadow-[inset_0_0_80px_rgba(0,0,0,0.9)]" 
+             style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop');">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0d47a1]/80 to-[#0a192f]/90 z-0"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center sr-bottom">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 drop-shadow-xl">Let's Secure Your <br>Financial Future.</h2>
+            <p class="text-lg md:text-2xl text-blue-100 mb-12 font-light leading-relaxed">
+                Connect with our premium advisory board today and get a personalized blueprint for your business continuity and wealth creation.
+            </p>
+            <a href="/contact" class="inline-flex items-center justify-center bg-white text-[#0d47a1] px-10 py-5 rounded-2xl font-black text-lg md:text-xl hover:bg-gray-100 transition shadow-[0_15px_30px_rgba(255,255,255,0.2)] hover:-translate-y-2">
+                Book Your Consultation <i class="fas fa-calendar-check ml-3"></i>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<!-- INITIALIZATION SCRIPT -->
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 600);
+        }, 1000); 
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ScrollReveal().reveal('.sr-bottom', { delay: 150, distance: '50px', origin: 'bottom', duration: 800, interval: 150 });
+        ScrollReveal().reveal('.sr-left', { delay: 150, distance: '50px', origin: 'left', duration: 1000 });
+        ScrollReveal().reveal('.sr-right', { delay: 150, distance: '50px', origin: 'right', duration: 1000 });
+    });
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,369 @@
+<%- include('partials/header') %>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    #loader { transition: opacity 0.6s ease-out; }
+    
+    .kinetic-text {
+        font-size: 8rem;
+        font-weight: 900;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.08);
+        animation: scrollText 30s linear infinite;
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+    }
+    @keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* Custom Range Slider */
+    input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none; height: 22px; width: 22px; border-radius: 50%;
+        background: #0d47a1; cursor: pointer; margin-top: -8px; box-shadow: 0 4px 6px rgba(13,71,161,0.4);
+    }
+    input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e2e8f0; border-radius: 5px; }
+    
+    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+</style>
+
+<div id="loader" class="fixed inset-0 z-[100] bg-[#f8fafc] flex flex-col items-center justify-center">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_usmfx6bp.json" background="transparent" speed="1.5" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
+    <h2 class="text-[#0d47a1] font-bold tracking-widest uppercase mt-4 animate-pulse">Loading Tools...</h2>
+</div>
+
+<main class="mt-[72px] overflow-x-hidden bg-[#f8fafc]">
+    
+    <section class="relative min-h-[40vh] bg-fixed bg-center bg-cover flex items-center overflow-hidden py-16" 
+             style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop');">
+        
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0a192f] via-[#0a192f]/90 to-transparent z-0"></div>
+        <div class="absolute top-1/4 left-0 w-full overflow-hidden flex z-0 opacity-40 pointer-events-none">
+            <div class="kinetic-text">WEALTH CREATION • FORECASTING • FINANCIAL TOOLS • SIP CALCULATOR • LUMPSUM</div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+            <div class="inline-flex items-center bg-[#0d47a1]/90 text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-4 tracking-widest shadow-inner border border-blue-400/30">
+                <span class="w-2 h-2 rounded-full bg-blue-300 mr-3 animate-pulse"></span>
+                Limitless Forecasting Engine
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
+                Architect Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">Financial Future.</span>
+            </h1>
+            <p class="text-lg text-blue-100 max-w-2xl mx-auto font-light">
+                Calculate multi-crore investments instantly. No upper limits. Download detailed year-by-year projections for your corporate planning.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 relative z-10 -mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 p-6 md:p-12">
+                <div class="flex justify-center mb-10">
+                    <div class="bg-gray-100 p-2 flex space-x-2 w-full max-w-md rounded-2xl">
+                        <button id="tab-sip" class="flex-1 py-3 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300" onclick="switchCalc('sip')">SIP</button>
+                        <button id="tab-lumpsum" class="flex-1 py-3 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300" onclick="switchCalc('lumpsum')">Lumpsum</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <div class="lg:col-span-5 space-y-8">
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label id="label-amount" class="font-bold text-gray-800 text-lg">Monthly Investment</label>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/2 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <span class="text-[#0d47a1] font-bold mr-2">₹</span>
+                                    <input type="number" id="input-amount" value="25000" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('amount'); calculate()">
+                                </div>
+                            </div>
+                            <input type="range" id="range-amount" min="500" max="1000000" step="500" value="25000" class="w-full mt-2" oninput="updateInput('amount'); calculate()">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-800 text-lg">Expected Return Rate</label>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/3 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <input type="number" id="input-rate" value="12" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('rate'); calculate()">
+                                    <span class="text-[#0d47a1] font-bold ml-2">%</span>
+                                </div>
+                            </div>
+                            <input type="range" id="range-rate" min="1" max="50" step="0.5" value="12" class="w-full mt-2" oninput="updateInput('rate'); calculate()">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-800 text-lg">Time Period</label>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/3 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <input type="number" id="input-years" value="10" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('years'); calculate()">
+                                    <span class="text-[#0d47a1] font-bold ml-2">Yr</span>
+                                </div>
+                            </div>
+                            <input type="range" id="range-years" min="1" max="50" step="1" value="10" class="w-full mt-2" oninput="updateInput('years'); calculate()">
+                        </div>
+
+                        <button onclick="generateReport()" class="w-full mt-8 bg-[#0d47a1] hover:bg-blue-800 text-white font-black py-4 rounded-2xl shadow-[0_8px_20px_rgba(13,71,161,0.25)] hover:-translate-y-1 transition-all uppercase tracking-widest text-sm flex justify-center items-center border-2 border-[#0d47a1]">
+                            Generate Year-By-Year Report <i class="fas fa-file-alt ml-3 text-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center shadow-sm">
+                                <p class="text-xs md:text-sm font-bold text-gray-500 uppercase tracking-widest mb-2">Total Invested</p>
+                                <h3 class="text-2xl md:text-3xl font-black text-gray-900" id="display-invested">₹0</h3>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 text-center shadow-sm">
+                                <p class="text-xs md:text-sm font-bold text-blue-600 uppercase tracking-widest mb-2">Est. Returns</p>
+                                <h3 class="text-2xl md:text-3xl font-black text-green-600" id="display-returns">₹0</h3>
+                            </div>
+                            <div class="col-span-2 bg-[#0a192f] rounded-2xl p-8 text-center shadow-xl border border-[#0d47a1] relative overflow-hidden">
+                                <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-600 rounded-full blur-3xl opacity-30"></div>
+                                <p class="text-sm font-bold text-blue-300 uppercase tracking-widest mb-2 relative z-10">Total Wealth Generated</p>
+                                <h2 class="text-4xl md:text-5xl font-black text-white drop-shadow-md relative z-10" id="display-total">₹0</h2>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 rounded-2xl p-4 h-64 md:h-80 w-full relative shadow-sm">
+                            <canvas id="wealthChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="report-section" class="py-16 hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-8 bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <h3 class="text-2xl font-black text-gray-900">Detailed Projection Report</h3>
+                    <p class="text-gray-500 text-sm mt-1">Review your year-by-year wealth growth trajectory.</p>
+                </div>
+                <button onclick="downloadPDF()" class="bg-[#0a192f] text-white px-8 py-3 rounded-xl font-bold hover:bg-black transition shadow-lg flex items-center">
+                    <i class="fas fa-file-pdf mr-3 text-red-400 text-xl"></i> Download PDF
+                </button>
+            </div>
+            
+            <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-gray-200">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-[#0a192f] text-white text-sm uppercase tracking-wider">
+                                <th class="p-4 rounded-tl-xl font-bold">Year</th>
+                                <th class="p-4 font-bold">Total Invested</th>
+                                <th class="p-4 font-bold">Est. Returns</th>
+                                <th class="p-4 rounded-tr-xl font-bold">End Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="report-table-body" class="text-gray-700 font-medium">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    let currentMode = 'sip'; 
+    let wealthChart;
+    let reportDataRows = []; // Store rows for backend
+
+    const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(Math.round(num));
+
+    function updateInput(id) { document.getElementById(`input-${id}`).value = document.getElementById(`range-${id}`).value; }
+    function updateRange(id) { document.getElementById(`range-${id}`).value = document.getElementById(`input-${id}`).value; }
+
+    function switchCalc(mode) {
+        currentMode = mode;
+        const btnSip = document.getElementById('tab-sip');
+        const btnLump = document.getElementById('tab-lumpsum');
+        const labelAmount = document.getElementById('label-amount');
+
+        if(mode === 'sip') {
+            btnSip.className = 'flex-1 py-3 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300';
+            btnLump.className = 'flex-1 py-3 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300';
+            labelAmount.innerText = 'Monthly Investment';
+        } else {
+            btnLump.className = 'flex-1 py-3 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300';
+            btnSip.className = 'flex-1 py-3 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300';
+            labelAmount.innerText = 'Total Investment';
+            if(document.getElementById('input-amount').value == 25000) {
+                document.getElementById('input-amount').value = 500000;
+                document.getElementById('range-amount').value = 500000;
+            }
+        }
+        calculate();
+    }
+
+    function calculate() {
+        document.getElementById('report-section').classList.add('hidden');
+
+        const amount = parseFloat(document.getElementById('input-amount').value) || 0;
+        const rate = parseFloat(document.getElementById('input-rate').value) || 0;
+        const years = parseFloat(document.getElementById('input-years').value) || 0;
+
+        let totalInvested = 0, totalValue = 0;
+
+        if (currentMode === 'sip') {
+            const months = years * 12;
+            const monthlyRate = rate / 12 / 100;
+            totalInvested = amount * months;
+            totalValue = monthlyRate === 0 ? totalInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+        } else {
+            totalInvested = amount;
+            totalValue = amount * Math.pow(1 + rate/100, years);
+        }
+
+        const estReturns = totalValue - totalInvested;
+
+        document.getElementById('display-invested').innerText = '₹' + formatCurrency(totalInvested);
+        document.getElementById('display-returns').innerText = '₹' + formatCurrency(estReturns);
+        document.getElementById('display-total').innerText = '₹' + formatCurrency(totalValue);
+
+        updateChart(totalInvested, estReturns);
+    }
+
+    function updateChart(invested, returns) {
+        const ctx = document.getElementById('wealthChart').getContext('2d');
+        if (wealthChart) wealthChart.destroy();
+
+        wealthChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Total Invested', 'Est. Returns'],
+                datasets: [{
+                    data: [invested, returns],
+                    backgroundColor: ['#94a3b8', '#16a34a'],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, cutout: '75%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 20, font: { weight: 'bold' } } },
+                    tooltip: { callbacks: { label: function(context) { return ' ₹' + formatCurrency(context.raw); } } }
+                }
+            }
+        });
+    }
+
+    function generateReport() {
+        const amount = parseFloat(document.getElementById('input-amount').value) || 0;
+        const rate = parseFloat(document.getElementById('input-rate').value) || 0;
+        const years = parseFloat(document.getElementById('input-years').value) || 0;
+
+        const tbody = document.getElementById('report-table-body');
+        tbody.innerHTML = ''; 
+        reportDataRows = []; // Clear array for backend
+
+        let cumulativeInvested = 0, cumulativeValue = 0;
+
+        for (let y = 1; y <= years; y++) {
+            if (currentMode === 'sip') {
+                const months = y * 12;
+                const monthlyRate = rate / 12 / 100;
+                cumulativeInvested = amount * months;
+                cumulativeValue = monthlyRate === 0 ? cumulativeInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+            } else {
+                cumulativeInvested = amount;
+                cumulativeValue = amount * Math.pow(1 + rate/100, y);
+            }
+
+            const estReturns = cumulativeValue - cumulativeInvested;
+            
+            // Save to array for PDF request
+            reportDataRows.push({
+                year: y,
+                invested: '₹' + formatCurrency(cumulativeInvested),
+                returns: '₹' + formatCurrency(estReturns),
+                total: '₹' + formatCurrency(cumulativeValue)
+            });
+
+            const bgClass = y % 2 === 0 ? 'bg-gray-50' : 'bg-white';
+            tbody.innerHTML += `
+                <tr class="${bgClass} border-b border-gray-100 hover:bg-blue-50 transition-colors">
+                    <td class="p-4 font-bold text-gray-900">${y}</td>
+                    <td class="p-4">₹${formatCurrency(cumulativeInvested)}</td>
+                    <td class="p-4 text-green-600 font-bold">₹${formatCurrency(estReturns)}</td>
+                    <td class="p-4 font-black text-[#0d47a1]">₹${formatCurrency(cumulativeValue)}</td>
+                </tr>
+            `;
+        }
+
+        const reportSec = document.getElementById('report-section');
+        reportSec.classList.remove('hidden');
+        reportSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Backend PDF Generation Logic
+    async function downloadPDF() {
+        // Show loading Swal
+        Swal.fire({
+            title: 'Generating Report...',
+            html: 'Compiling your financial data into a premium PDF.',
+            allowOutsideClick: false,
+            didOpen: () => { Swal.showLoading(); }
+        });
+
+        const payload = {
+            reportType: currentMode === 'sip' ? 'SIP Investment Forecast' : 'Lumpsum Investment Forecast',
+            invested: document.getElementById('display-invested').innerText,
+            returns: document.getElementById('display-returns').innerText,
+            total: document.getElementById('display-total').innerText,
+            rows: reportDataRows
+        };
+
+        try {
+            const response = await fetch('/api/download-pdf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error('Failed to generate PDF');
+
+            // Convert response to Blob and download
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = payload.reportType.split(' ')[0] + '_Report.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Downloaded!',
+                text: 'Your PDF report is ready.',
+                confirmButtonColor: '#0d47a1'
+            });
+
+        } catch (error) {
+            console.error(error);
+            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong while generating the PDF.' });
+        }
+    }
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; calculate(); }, 600);
+        }, 1000); 
+    });
+</script>
+
+<%- include('partials/footer') %>

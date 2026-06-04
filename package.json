@@ -1,0 +1,32 @@
+{
+  "name": "structured-legacy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch",
+    "dev:server": "nodemon server.js",
+    "dev": "concurrently \"npm run dev:css\" \"npm run dev:server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3",
+    "nodemailer": "^8.0.10",
+    "puppeteer": "^25.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "concurrently": "^10.0.3",
+    "nodemon": "^3.1.14",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.19"
+  }
+}

@@ -1,0 +1,130 @@
+<%- include('partials/header') %>
+
+<style>
+    .bg-grid-pattern {
+        background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+        background-size: 32px 32px;
+    }
+    .animate-float-slow { animation: float 8s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+</style>
+
+<main class="mt-[72px] overflow-x-hidden bg-[#e0e5ec]">
+
+    <section class="relative min-h-[60vh] bg-fixed bg-center bg-cover flex items-center overflow-hidden py-20" 
+             style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop');">
+        <div class="absolute inset-0 bg-[#0a192f]/80 z-0"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center sr-bottom">
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-6 tracking-widest shadow-inner border border-white/20">
+                Who We Are
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
+                The Architects Of <br><span class="text-blue-400">Permanent Wealth.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
+                Structured Legacy isn't just an advisory firm. We are your financial command center, dedicated to protecting your business operations and compounding your personal wealth.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="grid grid-cols-2 gap-4 h-[500px] sr-left">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" class="w-full h-[300px] object-cover rounded-[2rem] shadow-xl mt-16 animate-float-slow">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-[2rem] shadow-2xl">
+                </div>
+                
+                <div class="sr-right">
+                    <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-4 block">Our Origin</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
+                        Built For Visionaries, <br>By Industry Experts.
+                    </h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
+                        Structured Legacy was born out of a simple observation: Brilliant founders were building multi-million dollar companies, yet their personal wealth and business continuity plans were shockingly fragile. One legal hurdle, one unexpected tax audit, or a sudden leadership crisis could wipe out decades of hard work.
+                    </p>
+                    <p class="text-gray-600 mb-8 text-lg leading-relaxed text-justify">
+                        We stepped in to bridge this gap. Bringing together the sharpest minds in corporate law, tax strategy, and actuarial science, we created a comprehensive framework. Today, we specialize in structuring massive life covers (up to ₹200 Cr), ensuring zero tax leakages, and creating unshakeable legacies for elite entrepreneurs across India.
+                    </p>
+                    
+                    <div class="flex items-center space-x-6 pt-6 border-t border-gray-100">
+                        <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center">
+                            <i class="fas fa-bullseye text-2xl text-[#0d47a1]"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900">Our Mission</h4>
+                            <p class="text-gray-500">To transition 10,000 businesses from vulnerable growth to permanent, protected wealth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#e0e5ec] bg-grid-pattern relative">
+        <div class="absolute inset-0 bg-[#e0e5ec]/80 z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 sr-bottom">
+                <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">Our Pillars</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900">The Values That Drive Us</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-2xl text-[#0d47a1]"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Absolute Security</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">We leave nothing to chance. Every strategy is legally bulletproof and financially stress-tested.</p>
+                </div>
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-100 text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
+                        <i class="fas fa-user-secret text-2xl text-[#0d47a1]"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Strict Confidentiality</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Your financial blueprints are guarded with the highest level of corporate secrecy and encryption.</p>
+                </div>
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-200 text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-2xl text-[#0d47a1]"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Relentless Growth</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Protection is our base, but compounding your capital at market-beating rates is our ultimate goal.</p>
+                </div>
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-300 text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-2xl text-[#0d47a1]"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">True Partnership</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">We don't act as outsourced consultants. We sit on your side of the table as your financial board.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-24 bg-fixed bg-center bg-cover flex items-center" 
+             style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop');">
+        <div class="absolute inset-0 bg-blue-900/90 mix-blend-multiply z-0"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center sr-bottom">
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-8">Ready To Structure Your Legacy?</h2>
+            <p class="text-xl text-blue-100 mb-10 font-light leading-relaxed">
+                Join hundreds of successful entrepreneurs who sleep peacefully knowing their business and family are protected by ₹200 Cr structured frameworks.
+            </p>
+            <a href="/contact" class="inline-block bg-white text-[#0d47a1] px-10 py-5 rounded-2xl font-black text-lg hover:bg-gray-100 transition shadow-2xl hover:-translate-y-1">
+                Schedule A Private Consultation
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        ScrollReveal().reveal('.sr-bottom', { delay: 150, distance: '50px', origin: 'bottom', duration: 800, interval: 150 });
+        ScrollReveal().reveal('.sr-left', { delay: 150, distance: '50px', origin: 'left', duration: 1000 });
+        ScrollReveal().reveal('.sr-right', { delay: 150, distance: '50px', origin: 'right', duration: 1000 });
+    });
+</script>
+
+<%- include('partials/footer') %>

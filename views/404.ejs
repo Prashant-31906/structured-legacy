@@ -1,0 +1,120 @@
+<%- include('partials/header') %>
+
+<!-- EXTERNAL LIBRARIES -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<!-- CUSTOM CSS FOR EFFECTS -->
+<style>
+    /* Lottie Loader */
+    #loader { transition: opacity 0.6s ease-out; }
+    
+    /* Massive 404 Background Text */
+    .bg-text-404 {
+        font-size: 35vw;
+        font-weight: 900;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 4px rgba(13, 71, 161, 0.05); /* Very subtle blue stroke */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    /* Glassmorphism Refined */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Floating Animations */
+    .animate-float-slow { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+</style>
+
+<!-- PRELOADER -->
+<div id="loader" class="fixed inset-0 z-[100] bg-[#e0e5ec] flex flex-col items-center justify-center">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_usmfx6bp.json" background="transparent" speed="1.5" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
+    <h2 class="text-[#0d47a1] font-bold tracking-widest uppercase mt-4 animate-pulse">Rerouting...</h2>
+</div>
+
+<main class="mt-[72px] overflow-hidden bg-[#f8fafc] relative min-h-[85vh] flex items-center justify-center">
+    
+    <!-- Massive Background 404 -->
+    <div class="bg-text-404 animate-pulse">404</div>
+
+    <!-- Decorative Glow Elements -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#0d47a1] rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center sr-bottom animate-float-slow">
+        <div class="glass-card p-10 md:p-16 rounded-[2.5rem] relative overflow-hidden">
+            
+            <!-- Top Icon -->
+            <div class="w-20 h-20 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-6 shadow-inner border border-blue-100">
+                <i class="fas fa-compass text-4xl text-[#0d47a1]"></i>
+            </div>
+            
+            <div class="inline-flex items-center bg-[#0d47a1]/10 text-[#0d47a1] px-4 py-2 rounded-full text-xs md:text-sm font-bold mb-4 tracking-widest uppercase border border-[#0d47a1]/20">
+                <i class="fas fa-exclamation-triangle mr-2"></i> Page Not Found
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-4">
+                Lost In The <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0d47a1] to-blue-500">Market?</span>
+            </h1>
+            
+            <p class="text-lg text-gray-600 mb-10 font-medium leading-relaxed max-w-xl mx-auto">
+                The financial strategy or page you are looking for seems to have been moved or doesn't exist. Let's get you back to building your legacy.
+            </p>
+            
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="/" class="w-full sm:w-auto bg-[#0d47a1] text-white px-8 py-4 rounded-xl font-black text-lg hover:bg-blue-900 transition shadow-[0_10px_20px_rgba(13,71,161,0.3)] hover:-translate-y-1 flex items-center justify-center uppercase tracking-wider">
+                    <i class="fas fa-home mr-3"></i> Back to Homepage
+                </a>
+                <a href="/contact" class="w-full sm:w-auto bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold text-lg hover:border-[#0d47a1] hover:text-[#0d47a1] transition flex items-center justify-center uppercase tracking-wider">
+                    Contact Support
+                </a>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="mt-10 pt-8 border-t border-gray-100">
+                <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Quick Links</p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm font-semibold">
+                    <a href="/services" class="text-[#0d47a1] hover:underline bg-blue-50 px-4 py-2 rounded-lg">Our Solutions</a>
+                    <a href="/tools" class="text-[#0d47a1] hover:underline bg-blue-50 px-4 py-2 rounded-lg">Calculators</a>
+                    <a href="/blogs" class="text-[#0d47a1] hover:underline bg-blue-50 px-4 py-2 rounded-lg">Premium Insights</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</main>
+
+<!-- INITIALIZATION SCRIPT -->
+<script>
+    // Remove Loader smoothly
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 600);
+        }, 800); 
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // ScrollReveal Setup
+        if(typeof ScrollReveal !== 'undefined') {
+            ScrollReveal().reveal('.sr-bottom', { delay: 200, distance: '40px', origin: 'bottom', duration: 800 });
+        }
+    });
+</script>
+
+<%- include('partials/footer') %>

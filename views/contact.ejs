@@ -1,0 +1,282 @@
+<%- include('partials/header') %>
+
+<!-- EXTERNAL LIBRARIES -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- CUSTOM CSS FOR EFFECTS -->
+<style>
+    /* Lottie Loader */
+    #loader { transition: opacity 0.6s ease-out; }
+    
+    /* Kinetic Typography */
+    .kinetic-text {
+        font-size: 8rem;
+        font-weight: 900;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.08);
+        animation: scrollText 30s linear infinite;
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+    }
+    @keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* Neumorphism */
+    .neumorphic {
+        background: #e0e5ec;
+        box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.6);
+        border-radius: 24px;
+    }
+
+    /* Glassmorphism */
+    .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-dark {
+        background: rgba(10, 25, 47, 0.8);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Floating Animations */
+    .animate-float-slow { animation: float 8s ease-in-out infinite; }
+    .animate-float-fast { animation: float 5s ease-in-out infinite reverse; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+    /* Premium Input Autofill Fix */
+    input:-webkit-autofill, textarea:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px #f8fafc inset !important;
+    }
+
+    /* SweetAlert Premium Customization */
+    .swal2-popup.premium-swal {
+        border-radius: 2rem !important;
+        border: 1px solid #f1f5f9 !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    }
+    .swal2-confirm.premium-btn {
+        border-radius: 1rem !important;
+        font-weight: 900 !important;
+        padding: 1rem 2rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        transition: all 0.3s ease !important;
+    }
+    .swal2-confirm.premium-btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 10px 15px -3px rgba(13, 71, 161, 0.3) !important;
+    }
+</style>
+
+<!-- PRELOADER -->
+<div id="loader" class="fixed inset-0 z-[100] bg-[#e0e5ec] flex flex-col items-center justify-center">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_usmfx6bp.json" background="transparent" speed="1.5" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
+    <h2 class="text-[#0d47a1] font-bold tracking-widest uppercase mt-4 animate-pulse">Connecting...</h2>
+</div>
+
+<main class="mt-[72px] overflow-x-hidden bg-[#e0e5ec]">
+    
+    <!-- 1. HERO SECTION (Parallax & Glassmorphism) -->
+    <section class="relative min-h-[50vh] bg-fixed bg-center bg-cover flex items-center overflow-hidden py-20" 
+             style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop');">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0a192f]/80 to-transparent z-0"></div>
+        
+        <!-- Kinetic Typography -->
+        <div class="absolute top-1/3 left-0 w-full overflow-hidden flex z-0 opacity-40 pointer-events-none">
+            <div class="kinetic-text">
+                GET IN TOUCH • START YOUR JOURNEY • SCHEDULE CONSULTATION • REACH OUT
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+            <div class="inline-flex items-center bg-[#0d47a1]/90 text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-6 tracking-widest shadow-inner border border-blue-400/30 sr-bottom">
+                <span class="w-2 h-2 rounded-full bg-blue-300 mr-3 animate-pulse"></span>
+                We Are Here For You
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg sr-bottom">
+                Let's Build Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">Legacy Together.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-blue-50 max-w-2xl mx-auto font-light leading-relaxed sr-bottom delay-100">
+                Whether you need to structure a ₹200 Cr life cover or optimize your corporate tax flow, our premium advisory board is ready to assist you.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. CONTACT FORM & INFO GRID -->
+    <section class="py-20 lg:py-28 bg-[#e0e5ec] relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                
+                <!-- Left Side: Contact Information (Cards) -->
+                <div class="lg:col-span-5 space-y-8 sr-left">
+                    <div>
+                        <h2 class="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">Reach Out To Our Experts.</h2>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-8">We ensure complete confidentiality and a systematic approach to your financial queries. Connect with us directly through the details below.</p>
+                    </div>
+
+                    <!-- Info Card 1: Office Address -->
+                    <div class="neumorphic p-8 flex items-start group hover:-translate-y-2 transition-transform duration-300 cursor-pointer">
+                        <div class="w-14 h-14 rounded-full bg-white shadow-inner flex items-center justify-center flex-shrink-0 mr-6 group-hover:bg-[#0d47a1] group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-map-marked-alt text-2xl text-[#0d47a1] group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Head Office</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm">123 Corporate Park, Business Avenue, New Delhi, India - 110001</p>
+                        </div>
+                    </div>
+
+                    <!-- Info Card 2: Phone -->
+                    <div class="neumorphic p-8 flex items-start group hover:-translate-y-2 transition-transform duration-300 cursor-pointer">
+                        <div class="w-14 h-14 rounded-full bg-white shadow-inner flex items-center justify-center flex-shrink-0 mr-6 group-hover:bg-[#0d47a1] group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-phone-alt text-2xl text-[#0d47a1] group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Call Us Directly</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm mb-1">For urgent queries:</p>
+                            <a href="tel:+919876543210" class="text-[#0d47a1] font-bold hover:underline">+91 98765 43210</a>
+                        </div>
+                    </div>
+
+                    <!-- Info Card 3: Email -->
+                    <div class="neumorphic p-8 flex items-start group hover:-translate-y-2 transition-transform duration-300 cursor-pointer">
+                        <div class="w-14 h-14 rounded-full bg-white shadow-inner flex items-center justify-center flex-shrink-0 mr-6 group-hover:bg-[#0d47a1] group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-envelope-open-text text-2xl text-[#0d47a1] group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Email Support</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm mb-1">We typically reply within 24 hours.</p>
+                            <a href="mailto:connect@structuredlegacy.com" class="text-[#0d47a1] font-bold hover:underline">connect@structuredlegacy.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Premium Contact Form -->
+                <div class="lg:col-span-7 sr-right">
+                    <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative border border-gray-100">
+                        <!-- Decorative glow -->
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-100 rounded-full z-0 animate-ping opacity-50 pointer-events-none"></div>
+                        
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-black text-gray-900 mb-2">Schedule A Private Consultation</h3>
+                            <p class="text-gray-500 mb-8 font-medium">Fill out the form below. Our advisory board will get back to you shortly.</p>
+                            
+                            <form action="/api/contact" method="POST" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Full Name -->
+                                    <div class="relative">
+                                        <i class="fas fa-user absolute left-5 top-1/2 transform -translate-y-1/2 text-[#0d47a1]"></i>
+                                        <input type="text" name="name" required class="w-full pl-14 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0d47a1] focus:bg-white transition font-semibold" placeholder="Full Name">
+                                    </div>
+                                    <!-- Phone Number -->
+                                    <div class="relative">
+                                        <i class="fas fa-phone absolute left-5 top-1/2 transform -translate-y-1/2 text-[#0d47a1]"></i>
+                                        <input type="tel" name="phone" required class="w-full pl-14 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0d47a1] focus:bg-white transition font-semibold" placeholder="Phone Number">
+                                    </div>
+                                </div>
+
+                                <!-- Email Address -->
+                                <div class="relative">
+                                    <i class="fas fa-envelope absolute left-5 top-1/2 transform -translate-y-1/2 text-[#0d47a1]"></i>
+                                    <input type="email" name="email" required class="w-full pl-14 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0d47a1] focus:bg-white transition font-semibold" placeholder="Email Address">
+                                </div>
+
+                                <!-- Service Interest (Dropdown) -->
+                                <div class="relative">
+                                    <i class="fas fa-briefcase absolute left-5 top-1/2 transform -translate-y-1/2 text-[#0d47a1]"></i>
+                                    <select name="service" class="w-full pl-14 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0d47a1] focus:bg-white transition font-semibold appearance-none cursor-pointer">
+                                        <option value="" disabled selected>Select Area of Interest</option>
+                                        <option value="legacy-protection">Legacy Protection (Life Cover)</option>
+                                        <option value="tax-planning">Corporate Tax Planning</option>
+                                        <option value="wealth-creation">Wealth Creation (SIP/Lumpsum)</option>
+                                        <option value="other">Other Business Advisory</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="relative">
+                                    <i class="fas fa-pen-alt absolute left-5 top-5 text-[#0d47a1]"></i>
+                                    <textarea name="message" rows="5" required class="w-full pl-14 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0d47a1] focus:bg-white transition resize-none font-semibold" placeholder="Briefly describe your business requirements..."></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full bg-[#0d47a1] hover:bg-blue-900 text-white font-black py-5 rounded-2xl transition shadow-lg hover:shadow-blue-900/40 hover:-translate-y-1 text-lg uppercase tracking-wider flex items-center justify-center">
+                                    Submit Request <i class="fas fa-paper-plane ml-3"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MAP & CTA SECTION (Full Width Dark Parallax) -->
+    <section class="relative py-32 bg-fixed bg-center bg-cover flex items-center shadow-[inset_0_0_80px_rgba(0,0,0,0.9)]" 
+             style="background-image: url('https://images.unsplash.com/photo-1497366754-0556ce78a4f1?q=80&w=2070&auto=format&fit=crop');">
+        <div class="absolute inset-0 bg-[#0a192f]/90 mix-blend-multiply z-0"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center sr-bottom">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 drop-shadow-xl">Confidential. Professional. Unmatched.</h2>
+            <p class="text-lg md:text-xl text-blue-100 mb-10 font-light leading-relaxed">
+                We respect your time and business privacy. Every consultation is held under strict NDA protocols. Drop your details above, and our senior partners will connect with you directly.
+            </p>
+            <div class="inline-flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-2xl shadow-xl">
+                <i class="fas fa-lock text-2xl text-blue-400 mr-4"></i>
+                <span class="font-bold text-lg">100% Privacy Guaranteed</span>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- INITIALIZATION SCRIPT -->
+<script>
+    // Remove Loader smoothly
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 600);
+        }, 1000); 
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // ScrollReveal Setup
+        ScrollReveal().reveal('.sr-bottom', { delay: 150, distance: '50px', origin: 'bottom', duration: 800, interval: 150 });
+        ScrollReveal().reveal('.sr-left', { delay: 150, distance: '50px', origin: 'left', duration: 1000 });
+        ScrollReveal().reveal('.sr-right', { delay: 150, distance: '50px', origin: 'right', duration: 1000 });
+
+        // SweetAlert2 Success Logic
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            Swal.fire({
+                title: '<strong style="color: #0d47a1;">Request Sent!</strong>',
+                html: '<p style="color: #475569; font-size: 1.1rem;">Thank you for reaching out. Our advisory board will review your details and contact you shortly.</p>',
+                icon: 'success',
+                iconColor: '#0d47a1',
+                confirmButtonText: 'Excellent',
+                confirmButtonColor: '#0d47a1',
+                buttonsStyling: false,
+                customClass: {
+                    popup: 'premium-swal',
+                    confirmButton: 'bg-[#0d47a1] text-white premium-btn'
+                }
+            });
+            // Clean up URL so it doesn't pop up again on refresh
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+    });
+</script>
+
+<%- include('partials/footer') %>
