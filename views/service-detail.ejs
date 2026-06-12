@@ -1,0 +1,167 @@
+<%- include('partials/header') %>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "<%= service.title %> Advisory",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Structured Legacy"
+      },
+      "description": "<%= service.heroDesc %>",
+      "areaServed": "India"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        <% service.faqs.forEach(function(faq, index) { %>
+        {
+          "@type": "Question",
+          "name": "<%- faq.q %>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<%- faq.a %>"
+          }
+        }<%= index < service.faqs.length - 1 ? ',' : '' %>
+        <% }); %>
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+    /* Premium UI Styles */
+    .neumorphic { background: #e0e5ec; box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.6); border-radius: 24px; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+</style>
+
+<main class="mt-[72px] overflow-x-hidden bg-[#e0e5ec]">
+    
+    <section class="relative min-h-[50vh] bg-fixed bg-center bg-cover flex items-center py-20" 
+             style="background-image: url('<%= service.bgImage %>');">
+        <div class="absolute inset-0 bg-[#0a192f]/90 z-0"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+            
+            <nav class="flex justify-center text-xs md:text-sm font-bold text-blue-200 uppercase tracking-widest mb-6" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-2">
+                    <li><a href="/" class="hover:text-white transition">Home</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li><a href="/services" class="hover:text-white transition">Services</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li class="text-[#d4af37]"><%= service.title %></li>
+                </ol>
+            </nav>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg sr-bottom">
+                <%= service.title %>
+            </h1>
+            <p class="text-blue-300 font-bold tracking-widest uppercase text-sm mb-6 sr-bottom"><%= service.tagline %></p>
+            <p class="text-lg md:text-xl text-blue-50 max-w-3xl mx-auto font-light leading-relaxed sr-bottom delay-100">
+                <%= service.heroDesc %>
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="sr-left">
+                    <span class="text-red-600 font-bold tracking-widest uppercase text-sm mb-2 block">The Risk</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6"><%= service.problemTitle %></h2>
+                    <p class="text-gray-600 leading-relaxed text-justify mb-4 text-lg">
+                        <%= service.problemDesc1 %>
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-justify text-lg">
+                        <%= service.problemDesc2 %>
+                    </p>
+                </div>
+                <div class="sr-right bg-red-50 p-8 md:p-10 rounded-[2rem] border border-red-100 shadow-inner">
+                    <h4 class="font-bold text-gray-900 mb-6 border-b border-red-200 pb-3 text-lg">Common Failure Points:</h4>
+                    <ul class="space-y-5">
+                        <% service.failurePoints.forEach(point => { %>
+                            <li class="flex items-start text-base text-gray-700 font-medium">
+                                <i class="fas fa-times-circle text-red-500 mt-1 mr-4 text-lg"></i> 
+                                <span><%= point %></span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#e0e5ec] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 sr-bottom">
+                <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">Strategic Framework</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900">How We Secure Your Legacy</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <% service.framework.forEach((item, index) => { %>
+                    <div class="neumorphic p-8 sr-bottom" style="transition-delay: <%= index * 100 %>ms;">
+                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-[#0d47a1] mb-6 shadow-sm border border-gray-100">
+                            <i class="fas <%= item.icon %> text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3"><%= item.title %></h3>
+                        <p class="text-gray-600 text-base leading-relaxed"><%= item.desc %></p>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 sr-bottom">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600 text-lg">Insights regarding <%= service.title.toLowerCase() %>.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <% service.faqs.forEach((faq, index) => { %>
+                    <details class="group bg-gray-50 border border-gray-200 rounded-2xl open:shadow-inner transition-all duration-300" <%= index === 0 ? 'open' : '' %>>
+                        <summary class="flex justify-between items-center font-bold p-6 md:p-8 text-gray-900 cursor-pointer text-lg">
+                            <span><%= faq.q %></span>
+                            <span class="transition-transform duration-300 group-open:rotate-180 text-[#0d47a1] bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm border border-gray-200 flex-shrink-0 ml-4"><i class="fas fa-chevron-down"></i></span>
+                        </summary>
+                        <div class="text-gray-700 p-6 md:p-8 pt-0 leading-relaxed text-base border-t border-gray-200 mt-2">
+                            <%= faq.a %>
+                        </div>
+                    </details>
+                <% }) %>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#0a192f] text-center shadow-[inset_0_0_80px_rgba(0,0,0,0.9)] border-t border-[#d4af37]">
+        <div class="max-w-3xl mx-auto px-4 sr-bottom">
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Secure Your Future Today</h2>
+            <p class="text-blue-100/80 mb-10 text-lg leading-relaxed">Don't leave decades of hard work up to chance. Let our advisory board structure a legally binding continuity plan specifically for your empire.</p>
+            <a href="/contact" class="bg-[#d4af37] text-[#0a192f] px-10 py-5 rounded-xl font-black text-lg hover:bg-white transition shadow-2xl uppercase tracking-wider inline-block">
+                Schedule Advisory Call <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if(typeof ScrollReveal !== 'undefined') {
+            ScrollReveal().reveal('.sr-bottom', { delay: 150, distance: '30px', origin: 'bottom', duration: 800 });
+            ScrollReveal().reveal('.sr-left', { delay: 150, distance: '30px', origin: 'left', duration: 800 });
+            ScrollReveal().reveal('.sr-right', { delay: 150, distance: '30px', origin: 'right', duration: 800 });
+        }
+    });
+</script>
+
+<%- include('partials/footer') %>

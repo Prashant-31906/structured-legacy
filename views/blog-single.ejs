@@ -1,14 +1,30 @@
 <%- include('partials/header') %>
 
+<script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.js"></script>
+
+<script id="blog-json-data" type="application/json">
+    <%- blog.content %>
+</script>
+
+<style>
+    /* Styling the generated Editor.js HTML blocks */
+    .prose h2 { font-size: 2rem; font-weight: 900; color: #0f172a; margin-top: 2rem; margin-bottom: 1rem; }
+    .prose h3 { font-size: 1.5rem; font-weight: 800; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .prose p { font-size: 1.125rem; color: #475569; line-height: 1.8; margin-bottom: 1.5rem; text-align: justify; }
+    .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #475569; }
+    .prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #475569; }
+    .prose li { margin-bottom: 0.5rem; font-size: 1.125rem; }
+    .prose blockquote { border-left: 4px solid #0d47a1; background: #f8fafc; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-style: italic; color: #334155; }
+</style>
+
 <main class="mt-[72px] bg-white min-h-screen">
     
-    <!-- Dynamic Blog Hero -->
     <section class="relative h-[60vh] bg-center bg-cover flex items-end pb-16" 
              style="background-image: url('<%= blog.image %>');">
         <div class="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-[#0a192f]/70 to-transparent z-0"></div>
         
         <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <span class="bg-[#0d47a1] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg mb-6 inline-block">
+            <span class="bg-[#d4af37] text-[#0a192f] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg mb-6 inline-block">
                 <%= blog.category %>
             </span>
             <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-6 drop-shadow-lg">
@@ -21,33 +37,97 @@
         </div>
     </section>
 
-    <!-- Reading Container -->
     <section class="py-16">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Share Buttons -->
             <div class="flex justify-center space-x-4 mb-12 pb-8 border-b border-gray-100">
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#1DA1F2] hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#0077b5] hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#25D366] hover:text-white transition"><i class="fas fa-link"></i></a>
-            </div>
+    <a href="#" onclick="shareOnTwitter(event)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#1DA1F2] hover:text-white transition shadow-sm" title="Share on Twitter">
+        <i class="fab fa-twitter"></i>
+    </a>
+    
+    <a href="#" onclick="shareOnLinkedIn(event)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#0077b5] hover:text-white transition shadow-sm" title="Share on LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+    
+    <a href="#" onclick="copyPageUrl(event)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#25D366] hover:text-white transition shadow-sm" title="Copy Link">
+        <i class="fas fa-link"></i>
+    </a>
+</div>
 
-            <!-- Main Dynamic Content -->
-            <!-- We use <%- %> instead of <%= %> so it renders HTML tags correctly -->
-            <article class="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-700 leading-relaxed text-justify">
-                <%- blog.content %>
-            </article>
-
-            <!-- Bottom CTA -->
-            <div class="mt-20 bg-blue-50 p-10 rounded-[2rem] text-center border border-blue-100">
-                <h3 class="text-2xl font-black text-gray-900 mb-4">Need personalized advice on this topic?</h3>
-                <p class="text-gray-600 mb-8">Connect with our advisory board to implement these strategies in your own corporate structure.</p>
-                <a href="/contact" class="bg-[#0d47a1] text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-900 transition shadow-lg">Schedule Consultation</a>
-            </div>
+            <article id="blog-content-container" class="prose max-w-none">
+                </article>
 
         </div>
     </section>
 
 </main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        try {
+            // 1. Get the raw JSON string from the hidden script tag
+            const rawJsonString = document.getElementById('blog-json-data').textContent;
+            
+            // 2. Parse it back into a JavaScript Object
+            const blogData = JSON.parse(rawJsonString);
+            
+            // 3. Initialize the HTML Parser
+            const edjsParser = edjsHTML();
+            
+            // 4. Parse Editor.js blocks into an array of HTML strings
+            const htmlArray = edjsParser.parse(blogData);
+            
+            // 5. Join the array and inject into the container
+            document.getElementById('blog-content-container').innerHTML = htmlArray.join('');
+            
+        } catch (error) {
+            console.error("Error parsing blog content:", error);
+            document.getElementById('blog-content-container').innerHTML = "<p class='text-red-500'>Error loading content. Please try again later.</p>";
+        }
+    });
+
+    // Share on Twitter
+    function shareOnTwitter(e) {
+        e.preventDefault();
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, 'twitter-share', 'width=600,height=400,scrollbars=no,resizable=no');
+    }
+
+    // Share on LinkedIn
+    function shareOnLinkedIn(e) {
+        e.preventDefault();
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, 'linkedin-share', 'width=600,height=400,scrollbars=no,resizable=no');
+    }
+
+    // Copy Current URL to Clipboard
+    function copyPageUrl(e) {
+        e.preventDefault();
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            // Ensure SweetAlert is loaded, otherwise fallback to standard alert
+            if(typeof Swal !== 'undefined') {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Link Copied!',
+                    text: 'Ready to share with your network.',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    iconColor: '#0d47a1',
+                    customClass: {
+                        popup: 'rounded-2xl border border-gray-100 shadow-xl'
+                    }
+                });
+            } else {
+                alert('Link copied to clipboard!');
+            }
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            alert('Failed to copy link. Please copy it manually from the address bar.');
+        });
+    }
+</script>
 
 <%- include('partials/footer') %>

@@ -3,12 +3,66 @@
 <!-- EXTERNAL LIBRARIES -->
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
+<!-- SEO SCHEMA MARKUP (JSON-LD for LLM Bots & Search Engines) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "Strategic Services | Structured Legacy",
+      "description": "Helping business owners protect wealth, ensure continuity, and preserve legacy through Succession Planning, Wealth Transfer, and Family Governance.",
+      "url": "https://www.structuredlegacy.com/services"
+    },
+    {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "position": 1,
+          "name": "Succession Planning",
+          "description": "Establishing a clear roadmap for ownership transfer, leadership continuity, and future governance."
+        },
+        {
+          "@type": "Service",
+          "position": 2,
+          "name": "Wealth Transfer Planning",
+          "description": "Structured approaches supporting efficient transfer of assets while maintaining clarity, flexibility, and control."
+        },
+        {
+          "@type": "Service",
+          "position": 3,
+          "name": "Business Continuity Planning",
+          "description": "Frameworks designed to support stability, continuity, and resilience against unexpected operational challenges."
+        },
+        {
+          "@type": "Service",
+          "position": 4,
+          "name": "Estate Liquidity Planning",
+          "description": "Ensuring appropriate resources and immediate capital pools are available for future obligations and taxes."
+        },
+        {
+          "@type": "Service",
+          "position": 5,
+          "name": "Family Governance",
+          "description": "Developing structures that support communication, decision-making, and long-term continuity across generations."
+        },
+        {
+          "@type": "Service",
+          "position": 6,
+          "name": "Wealth Protection Strategies",
+          "description": "Evaluating strategies designed to strengthen personal balance sheets and reduce potential financial vulnerabilities."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <!-- CUSTOM CSS FOR EFFECTS -->
 <style>
-    /* Lottie Loader */
     #loader { transition: opacity 0.6s ease-out; }
     
-    /* Kinetic Typography */
     .kinetic-text {
         font-size: 8rem;
         font-weight: 900;
@@ -22,19 +76,12 @@
     }
     @keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* Neumorphism */
     .neumorphic {
         background: #e0e5ec;
         box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.6);
         border-radius: 24px;
     }
-    .neumorphic-inset {
-        background: #e0e5ec;
-        box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px rgba(255,255,255, 0.6);
-        border-radius: 24px;
-    }
 
-    /* Glassmorphism */
     .glass {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(12px);
@@ -42,9 +89,7 @@
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Floating Animations */
     .animate-float-slow { animation: float 8s ease-in-out infinite; }
-    .animate-float-fast { animation: float 5s ease-in-out infinite reverse; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 </style>
 
@@ -56,240 +101,338 @@
 
 <main class="mt-[72px] overflow-x-hidden bg-[#e0e5ec]">
     
-    <!-- 1. HERO SECTION (Inner Page Height) -->
+    <!-- 1. HERO SECTION -->
     <section class="relative min-h-[60vh] bg-fixed bg-center bg-cover flex items-center overflow-hidden py-20" 
              style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');">
         
         <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0a192f]/80 to-transparent z-0"></div>
         
-        <!-- Kinetic Typography -->
         <div class="absolute top-1/3 left-0 w-full overflow-hidden flex z-0 opacity-40 pointer-events-none">
             <div class="kinetic-text">
-                EXPERT ADVISORY • FINANCIAL ARCHITECTURE • BUSINESS CONTINUITY • WEALTH
+                STRATEGIC ADVISORY • WEALTH PROTECTION • SUCCESSION • CONTINUITY
             </div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <div class="inline-flex items-center bg-[#0d47a1]/90 text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-6 tracking-widest shadow-inner border border-blue-400/30 sr-bottom">
+            <div class="inline-flex items-center bg-[#0d47a1]/90 text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-6 tracking-widest shadow-inner border border-blue-400/30 sr-bottom uppercase">
                 <span class="w-2 h-2 rounded-full bg-blue-300 mr-3 animate-pulse"></span>
-                Our Expertise
+                Strategic Services
             </div>
             
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg sr-bottom">
-                Solutions Engineered For <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">Scale & Security.</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg sr-bottom">
+                Helping Business Owners <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">Protect Wealth & Preserve Legacy.</span>
             </h1>
             
-            <p class="text-lg md:text-xl text-blue-50 max-w-3xl mx-auto font-light leading-relaxed sr-bottom delay-100">
-                Explore our comprehensive suite of financial services designed to protect your business assets, minimize tax liabilities, and compound your personal wealth.
+            <p class="text-lg md:text-xl text-blue-50 max-w-4xl mx-auto font-light leading-relaxed sr-bottom delay-100">
+                Every successful business owner eventually faces a critical question: How will the wealth, business, and opportunities created today be protected and transferred tomorrow? Our approach focuses on creating clarity, reducing uncertainty, and strengthening outcomes across generations.
             </p>
         </div>
     </section>
 
-    <!-- 2. SERVICE 1: LEGACY PROTECTION (Text Left, Image Right) -->
+    <!-- 2. SERVICE 1: SUCCESSION PLANNING -->
     <section class="py-20 lg:py-28 bg-[#e0e5ec] relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                
-                <!-- Text -->
                 <div class="sr-left order-2 lg:order-1">
                     <div class="w-16 h-16 rounded-2xl bg-white shadow-[0_10px_20px_rgba(13,71,161,0.1)] flex items-center justify-center mb-6">
-                        <i class="fas fa-shield-alt text-3xl text-[#0d47a1]"></i>
+                        <i class="fas fa-chess-king text-3xl text-[#0d47a1]"></i>
                     </div>
-                    <span class="text-[#0d47a1] font-extrabold tracking-widest uppercase text-sm mb-2 block">Flagship Solution</span>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-                        Legacy Protection & <br>Business Continuity
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                        Succession Planning
                     </h2>
+                    <p class="text-[#0d47a1] font-bold uppercase tracking-widest text-sm mb-6">Ensuring Smooth Ownership and Leadership Transitions</p>
                     <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
-                        What happens to your empire if you are no longer there to run it? We structure high-value life covers (up to ₹200 Cr) that act as an absolute financial safety net for your family and your company's stakeholders.
+                        Many businesses are built through decades of effort but face uncertainty when leadership transitions occur. Our succession planning framework helps families and business owners establish a clear roadmap for ownership transfer, leadership continuity, and future governance.
                     </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center text-gray-700 font-medium">
-                            <i class="fas fa-check text-green-600 mr-3 bg-green-100 p-1 rounded-full text-xs"></i> 
-                            Debt Protection & Keyman Insurance
-                        </li>
-                        <li class="flex items-center text-gray-700 font-medium">
-                            <i class="fas fa-check text-green-600 mr-3 bg-green-100 p-1 rounded-full text-xs"></i> 
-                            Immediate Liquidity for Stakeholder Buyouts
-                        </li>
-                        <li class="flex items-center text-gray-700 font-medium">
-                            <i class="fas fa-check text-green-600 mr-3 bg-green-100 p-1 rounded-full text-xs"></i> 
-                            Securing Family Lifestyle Indefinitely
-                        </li>
-                    </ul>
-                    <a href="/contact" class="inline-flex items-center text-[#0d47a1] font-bold text-lg hover:text-blue-800 transition border-b-2 border-[#0d47a1] pb-1">
-                        Secure Your Cover Now <i class="fas fa-arrow-right ml-2"></i>
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 mb-8">
+                        <h5 class="font-bold text-gray-900 mb-4">Key Areas:</h5>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Ownership transition planning</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Leadership succession frameworks</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Family business continuity</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Stakeholder alignment</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Long-term governance structures</li>
+                        </ul>
+                    </div>
+                    <a href="/services/succession-planning" class="inline-flex items-center text-[#0d47a1] font-bold text-lg hover:text-blue-800 transition border-b-2 border-[#0d47a1] pb-1">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
-
-                <!-- Image with Neumorphic Frame -->
                 <div class="sr-right order-1 lg:order-2">
                     <div class="neumorphic p-4">
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-xl shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-xl shadow-inner" alt="Succession Planning">
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 3. SERVICE 2: TAX STRATEGIES (Image Left, Text Right) -->
+    <!-- 3. SERVICE 2: WEALTH TRANSFER PLANNING -->
     <section class="py-20 lg:py-28 bg-white relative rounded-[3rem] shadow-sm z-10 -mt-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                
-                <!-- Image -->
                 <div class="sr-left order-1">
                     <div class="relative">
-                        <!-- Decorative Abstract Blob -->
                         <div class="absolute -top-10 -left-10 w-48 h-48 bg-blue-100 rounded-full blur-[40px] z-0"></div>
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" class="relative z-10 w-full h-[450px] object-cover rounded-[2rem] shadow-2xl animate-float-slow">
-                        
-                        <!-- Floating Glass Card -->
-                        <div class="absolute -bottom-8 -right-4 md:-right-8 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-xl z-20 w-4/5 md:w-2/3">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-chart-pie text-green-500 text-2xl mr-3"></i>
-                                <h5 class="font-bold text-gray-900">Capital Saved</h5>
-                            </div>
-                            <p class="text-xs text-gray-500 font-semibold mb-2">Quarterly Projection</p>
-                            <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                                <div class="bg-green-500 w-[85%] h-full rounded-full"></div>
-                            </div>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" class="relative z-10 w-full h-[450px] object-cover rounded-[2rem] shadow-2xl animate-float-slow" alt="Wealth Transfer">
                     </div>
                 </div>
-
-                <!-- Text -->
                 <div class="sr-right order-2">
                     <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
-                        <i class="fas fa-file-invoice-dollar text-3xl text-[#0d47a1]"></i>
+                        <i class="fas fa-exchange-alt text-3xl text-[#0d47a1]"></i>
                     </div>
-                    <span class="text-[#0d47a1] font-extrabold tracking-widest uppercase text-sm mb-2 block">Wealth Preservation</span>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-                        Zero Tax Leakage & <br>Compliance Mastery
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                        Wealth Transfer Planning
                     </h2>
+                    <p class="text-[#0d47a1] font-bold uppercase tracking-widest text-sm mb-6">Preserving Wealth Across Generations</p>
                     <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
-                        Stop bleeding your hard-earned capital. We implement highly advanced, 100% compliant corporate structuring to minimize your tax liabilities. By restructuring your cash flows and investment vehicles, we maximize your investable capital.
+                        Without proper planning, wealth transfer can become complex, inefficient, and emotionally challenging. We help families explore structured approaches that support efficient transfer of assets while maintaining clarity, flexibility, and control.
                     </p>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed text-justify">
-                        Our auditing team works proactively, ensuring your documentation and corporate filings are always audit-ready, keeping you strictly within the legal frameworks of the latest financial laws.
-                    </p>
-                    <a href="/contact" class="bg-[#0d47a1] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition shadow-[0_10px_20px_rgba(13,71,161,0.3)] hover:-translate-y-1 inline-block">
-                        Optimize Your Taxes
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8">
+                        <h5 class="font-bold text-gray-900 mb-4">Key Areas:</h5>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Intergenerational wealth transfer</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Family wealth preservation</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Transfer strategy development</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Legacy-focused planning</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Asset transition frameworks</li>
+                        </ul>
+                    </div>
+                    <a href="/services/wealth-transfer-planning" class="bg-[#0d47a1] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition shadow-[0_10px_20px_rgba(13,71,161,0.3)] inline-block hover:-translate-y-1">
+                        Learn More
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 4. SERVICE 3: WEALTH CREATION (Text Left, Image Right) -->
+    <!-- 4. SERVICE 3: BUSINESS CONTINUITY PLANNING -->
     <section class="py-20 lg:py-28 bg-[#e0e5ec] relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                
-                <!-- Text -->
                 <div class="sr-left order-2 lg:order-1">
                     <div class="w-16 h-16 rounded-2xl bg-white shadow-[0_10px_20px_rgba(13,71,161,0.1)] flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-3xl text-[#0d47a1]"></i>
+                        <i class="fas fa-shield-virus text-3xl text-[#0d47a1]"></i>
                     </div>
-                    <span class="text-[#0d47a1] font-extrabold tracking-widest uppercase text-sm mb-2 block">Capital Growth</span>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-                        Exponential Wealth <br>Creation
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                        Business Continuity Planning
                     </h2>
+                    <p class="text-[#0d47a1] font-bold uppercase tracking-widest text-sm mb-6">Protecting What You Have Built</p>
                     <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
-                        Through data-driven forecasting, we architect multi-decade investment plans that turn today's profit into tomorrow's empire. We analyze market trends to structure Lumpsum and Systematic Investment Plans (SIPs) that beat inflation consistently.
+                        Unexpected events can create significant operational and financial challenges for businesses and families. Business continuity planning helps establish frameworks designed to support stability, continuity, and resilience.
                     </p>
-                    
-                    <div class="neumorphic-inset p-6 mb-8 mt-4">
-                        <h4 class="font-bold text-gray-900 mb-2">Try Our Premium Tools</h4>
-                        <p class="text-gray-600 text-sm mb-4">Forecast your capital growth with our limitless calculation engine and generate instant PDF reports.</p>
-                        <div class="flex space-x-4">
-                            <a href="/tools" class="text-sm font-bold text-[#0d47a1] bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition">SIP Calculator</a>
-                            <a href="/tools" class="text-sm font-bold text-gray-700 bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition">Lumpsum Calculator</a>
-                        </div>
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 mb-8">
+                        <h5 class="font-bold text-gray-900 mb-4">Key Areas:</h5>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Continuity planning</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Ownership protection</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Risk management frameworks</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Business resilience strategies</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Family and stakeholder protection</li>
+                        </ul>
                     </div>
+                    <a href="/services/business-continuity-planning" class="inline-flex items-center text-[#0d47a1] font-bold text-lg hover:text-blue-800 transition border-b-2 border-[#0d47a1] pb-1">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
-
-                <!-- Image with Neumorphic Frame -->
                 <div class="sr-right order-1 lg:order-2">
                     <div class="neumorphic p-4">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-xl shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-xl shadow-inner" alt="Business Continuity">
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 5. OUR PROCESS (4 Steps Neumorphic Grid) -->
-    <section class="py-24 bg-white relative border-t border-gray-100">
+    <!-- 5. SERVICE 4: ESTATE LIQUIDITY PLANNING -->
+    <section class="py-20 lg:py-28 bg-white relative rounded-[3rem] shadow-sm z-10 -mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="sr-left order-1">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" class="w-full h-[450px] object-cover rounded-[2rem] shadow-2xl animate-float-slow" alt="Estate Liquidity">
+                </div>
+                <div class="sr-right order-2">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
+                        <i class="fas fa-hand-holding-usd text-3xl text-[#0d47a1]"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                        Estate Liquidity Planning
+                    </h2>
+                    <p class="text-[#0d47a1] font-bold uppercase tracking-widest text-sm mb-6">Creating Financial Readiness For Future Obligations</p>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
+                        Many families possess significant assets but may face liquidity challenges during wealth transfer events. Estate liquidity planning focuses on ensuring appropriate resources are available when they are needed most.
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8">
+                        <h5 class="font-bold text-gray-900 mb-4">Key Areas:</h5>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Liquidity assessment</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Future obligation planning</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Asset transition readiness</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Estate funding strategies</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Wealth preservation support</li>
+                        </ul>
+                    </div>
+                    <a href="/services/estate-liquidity-planning" class="bg-[#0d47a1] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition shadow-[0_10px_20px_rgba(13,71,161,0.3)] inline-block hover:-translate-y-1">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SERVICE 5: FAMILY GOVERNANCE -->
+    <section class="py-20 lg:py-28 bg-[#e0e5ec] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="sr-left order-2 lg:order-1">
+                    <div class="w-16 h-16 rounded-2xl bg-white shadow-[0_10px_20px_rgba(13,71,161,0.1)] flex items-center justify-center mb-6">
+                        <i class="fas fa-landmark text-3xl text-[#0d47a1]"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                        Family Governance
+                    </h2>
+                    <p class="text-[#0d47a1] font-bold uppercase tracking-widest text-sm mb-6">Strengthening Alignment Across Generations</p>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
+                        As wealth and businesses grow, governance becomes increasingly important. We help families develop structures that support communication, decision-making, and long-term continuity to prevent disputes.
+                    </p>
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 mb-8">
+                        <h5 class="font-bold text-gray-900 mb-4">Key Areas:</h5>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Family governance frameworks</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Family decision structures</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Communication processes</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Multi-generational planning</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-green-600 mr-3"></i> Continuity planning</li>
+                        </ul>
+                    </div>
+                    <a href="/services/family-governance" class="inline-flex items-center text-[#0d47a1] font-bold text-lg hover:text-blue-800 transition border-b-2 border-[#0d47a1] pb-1">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="sr-right order-1 lg:order-2">
+                    <div class="neumorphic p-4">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-xl shadow-inner" alt="Family Governance">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SERVICE 6: WEALTH PROTECTION STRATEGIES -->
+    <section class="py-20 lg:py-28 bg-white relative rounded-[3rem] shadow-sm z-10 -mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="sr-left order-1">
+                    <img src="https://images.unsplash.com/photo-1497366754-0556ce78a4f1?q=80&w=2070&auto=format&fit=crop" class="w-full h-[450px] object-cover rounded-[2rem] shadow-2xl animate-float-slow" alt="Wealth Protection">
+                </div>
+                <div class="sr-right order-2">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
+                        <i class="fas fa-lock text-3xl text-[#0d47a1]"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                        Wealth Protection Strategies
+                    </h2>
+                    <p class="text-[#0d47a1] font-bold uppercase tracking-widest text-sm mb-6">Building Long-Term Financial Security</p>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
+                        Protecting wealth is an essential component of preserving legacy. We help clients evaluate strategies designed to strengthen personal balance sheets and reduce potential financial vulnerabilities.
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8">
+                        <h5 class="font-bold text-gray-900 mb-4">Key Areas:</h5>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Wealth protection frameworks</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Personal balance sheet planning</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Long-term security strategies</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Capital preservation approaches</li>
+                            <li class="flex items-center text-gray-700 text-sm font-medium"><i class="fas fa-check text-[#0d47a1] mr-3"></i> Risk transfer planning</li>
+                        </ul>
+                    </div>
+                    <a href="/services/wealth-protection-strategies" class="bg-[#0d47a1] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition shadow-[0_10px_20px_rgba(13,71,161,0.3)] inline-block hover:-translate-y-1">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. THE FRAMEWORK (5 Steps Grid) -->
+    <section class="py-24 bg-[#e0e5ec] relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 sr-bottom">
-                <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">How We Work</span>
-                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">The Advisory Framework</h2>
-                <p class="text-gray-600 text-lg">A systematic, transparent, and legally sound process to structure your financial future.</p>
+                <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">Our Methodology</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">The Structured Legacy Framework™</h2>
+                <p class="text-gray-600 text-lg">Every engagement is guided by a systematic, transparent process.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Step 1 -->
-                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom">
-                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">1</div>
-                    <div class="relative z-10">
-                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Discovery</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">Deep-dive analysis of your current business valuation, cash flows, and existing liabilities.</p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div class="neumorphic p-6 border border-white/50 shadow-lg hover:-translate-y-2 transition-transform relative sr-bottom">
+                    <div class="w-12 h-12 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">1</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Discovery</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Understanding family objectives, business structures, and financial priorities.</p>
                 </div>
-
-                <!-- Step 2 -->
-                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom delay-100">
-                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">2</div>
-                    <div class="relative z-10">
-                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
-                            <i class="fas fa-chess-knight"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Strategy</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">Designing customized tax-saving structures and identifying the exact life cover (e.g. ₹200 Cr) required.</p>
-                    </div>
+                <div class="neumorphic p-6 border border-white/50 shadow-lg hover:-translate-y-2 transition-transform relative sr-bottom delay-100">
+                    <div class="w-12 h-12 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">2</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Assessment</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Identifying opportunities, risks, and long-term considerations.</p>
                 </div>
-
-                <!-- Step 3 -->
-                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom delay-200">
-                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">3</div>
-                    <div class="relative z-10">
-                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Execution</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">Legally binding documentation, policy issuance, and seamless integration into your accounting.</p>
-                    </div>
+                <div class="neumorphic p-6 border border-white/50 shadow-lg hover:-translate-y-2 transition-transform relative sr-bottom delay-200">
+                    <div class="w-12 h-12 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">3</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Design</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Developing a customized framework aligned with client goals.</p>
                 </div>
-
-                <!-- Step 4 -->
-                <div class="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow relative sr-bottom delay-300">
-                    <div class="absolute -top-6 -left-4 text-8xl font-black text-gray-200 opacity-50 select-none">4</div>
-                    <div class="relative z-10">
-                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-6 shadow-md">
-                            <i class="fas fa-level-up-alt"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Growth</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">Continuous quarterly monitoring, SIP adjustments, and compliance audits to ensure permanent security.</p>
-                    </div>
+                <div class="neumorphic p-6 border border-white/50 shadow-lg hover:-translate-y-2 transition-transform relative sr-bottom delay-300">
+                    <div class="w-12 h-12 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">4</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Implementation</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Supporting execution and coordination where appropriate.</p>
+                </div>
+                <div class="neumorphic p-6 border border-white/50 shadow-lg hover:-translate-y-2 transition-transform relative sr-bottom delay-400">
+                    <div class="w-12 h-12 rounded-full bg-[#0d47a1] text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">5</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Review</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">Ensuring strategies remain aligned as circumstances evolve.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. PARALLAX CTA DIVIDER -->
+    <!-- 9. WHO WE WORK WITH (4 Neumorphic Cards) -->
+    <section class="py-20 bg-white relative border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sr-bottom">
+                <h2 class="text-sm font-bold text-[#0d47a1] tracking-widest uppercase mb-2">Demographics</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-gray-900">Who We Work With</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 shadow-md hover:shadow-xl transition-shadow sr-bottom">
+                    <i class="fas fa-user-tie text-3xl text-[#0d47a1] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">Business Owners</h4>
+                    <p class="text-sm text-gray-600">Protect wealth while ensuring operational continuity.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 shadow-md hover:shadow-xl transition-shadow sr-bottom delay-100">
+                    <i class="fas fa-users text-3xl text-[#0d47a1] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">Family Businesses</h4>
+                    <p class="text-sm text-gray-600">Create smooth transitions across generations.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 shadow-md hover:shadow-xl transition-shadow sr-bottom delay-200">
+                    <i class="fas fa-chart-line text-3xl text-[#0d47a1] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">Promoters & Entrepreneurs</h4>
+                    <p class="text-sm text-gray-600">Convert business success into structured personal wealth.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 shadow-md hover:shadow-xl transition-shadow sr-bottom delay-300">
+                    <i class="fas fa-gem text-3xl text-[#0d47a1] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">High-Net-Worth Families</h4>
+                    <p class="text-sm text-gray-600">Preserve and transfer wealth efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. PARALLAX CTA DIVIDER -->
     <section class="relative py-24 md:py-32 bg-fixed bg-center bg-cover flex items-center shadow-[inset_0_0_80px_rgba(0,0,0,0.9)]" 
              style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0d47a1]/80 to-[#0a192f]/90 z-0"></div>
         <div class="relative z-10 max-w-5xl mx-auto px-4 text-center sr-bottom">
-            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 drop-shadow-xl">Let's Secure Your <br>Financial Future.</h2>
+            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 drop-shadow-xl">Ready To Build A <br>Lasting Legacy?</h2>
             <p class="text-lg md:text-2xl text-blue-100 mb-12 font-light leading-relaxed">
-                Connect with our premium advisory board today and get a personalized blueprint for your business continuity and wealth creation.
+                Schedule a confidential strategy consultation to explore how structured planning can help protect your wealth, support your family, and preserve your legacy for future generations.
             </p>
             <a href="/contact" class="inline-flex items-center justify-center bg-white text-[#0d47a1] px-10 py-5 rounded-2xl font-black text-lg md:text-xl hover:bg-gray-100 transition shadow-[0_15px_30px_rgba(255,255,255,0.2)] hover:-translate-y-2">
                 Book Your Consultation <i class="fas fa-calendar-check ml-3"></i>

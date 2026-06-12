@@ -1,29 +1,69 @@
 <%- include('partials/header') %>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "url": "https://www.structuredlegacy.com/about",
+      "name": "About Structured Legacy | Wealth Preservation & Legacy Planning",
+      "description": "Structured Legacy helps business owners, promoters, and families create structured frameworks that protect wealth, ensure business continuity, and preserve family legacy across generations."
+    },
+    {
+      "@type": "FinancialService",
+      "name": "Structured Legacy",
+      "founder": {
+        "@type": "Person",
+        "name": "Ved"
+      },
+      "slogan": "Protecting Wealth. Preserving Legacy.",
+      "knowsAbout": [
+        "Wealth Preservation",
+        "Succession Planning",
+        "Business Continuity Planning",
+        "Legacy Transfer",
+        "Family Governance",
+        "Estate Liquidity"
+      ]
+    }
+  ]
+}
+</script>
+
 <style>
+    /* Premium Backgrounds and Floating Effects */
     .bg-grid-pattern {
         background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
         background-size: 32px 32px;
     }
     .animate-float-slow { animation: float 8s ease-in-out infinite; }
+    .animate-float-fast { animation: float 5s ease-in-out infinite reverse; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    
+    /* Neumorphism */
+    .neumorphic {
+        background: #e0e5ec;
+        box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.6);
+        border-radius: 24px;
+    }
 </style>
 
 <main class="mt-[72px] overflow-x-hidden bg-[#e0e5ec]">
 
     <section class="relative min-h-[60vh] bg-fixed bg-center bg-cover flex items-center overflow-hidden py-20" 
              style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-[#0a192f]/80 z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0a192f] via-[#0a192f]/90 to-[#0a192f]/60 z-0"></div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center sr-bottom">
-            <div class="inline-flex items-center bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-6 tracking-widest shadow-inner border border-white/20">
-                Who We Are
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-6 tracking-widest shadow-inner border border-white/20 uppercase">
+                About Structured Legacy
             </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
-                The Architects Of <br><span class="text-blue-400">Permanent Wealth.</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
+                Helping Families <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">Protect Wealth</span> <br>& Preserve Legacy.
             </h1>
             <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
-                Structured Legacy isn't just an advisory firm. We are your financial command center, dedicated to protecting your business operations and compounding your personal wealth.
+                We empower business owners, promoters, and high-net-worth families to build structured frameworks for wealth preservation, business continuity, and generational transfer.
             </p>
         </div>
     </section>
@@ -32,29 +72,31 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="grid grid-cols-2 gap-4 h-[500px] sr-left">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" class="w-full h-[300px] object-cover rounded-[2rem] shadow-xl mt-16 animate-float-slow">
-                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" class="w-full h-[400px] object-cover rounded-[2rem] shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" alt="Corporate Strategy" class="w-full h-[300px] object-cover rounded-[2rem] shadow-xl mt-16 animate-float-slow">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" alt="Family Wealth" class="w-full h-[400px] object-cover rounded-[2rem] shadow-2xl">
                 </div>
                 
                 <div class="sr-right">
                     <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-4 block">Our Origin</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-                        Built For Visionaries, <br>By Industry Experts.
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                        Creating Wealth And Preserving Wealth Are Two Very Different Challenges.
                     </h2>
-                    <p class="text-gray-600 mb-6 text-lg leading-relaxed text-justify">
-                        Structured Legacy was born out of a simple observation: Brilliant founders were building multi-million dollar companies, yet their personal wealth and business continuity plans were shockingly fragile. One legal hurdle, one unexpected tax audit, or a sudden leadership crisis could wipe out decades of hard work.
+                    <p class="text-gray-600 mb-4 text-lg leading-relaxed text-justify">
+                        Structured Legacy was founded with a simple belief. Many entrepreneurs, promoters, and family business owners dedicate decades to building successful businesses. However, critical questions surrounding succession, continuity, wealth transfer, and long-term family objectives are often addressed much later than they should be.
                     </p>
                     <p class="text-gray-600 mb-8 text-lg leading-relaxed text-justify">
-                        We stepped in to bridge this gap. Bringing together the sharpest minds in corporate law, tax strategy, and actuarial science, we created a comprehensive framework. Today, we specialize in structuring massive life covers (up to ₹200 Cr), ensuring zero tax leakages, and creating unshakeable legacies for elite entrepreneurs across India.
+                        Without proper planning, even successful businesses and significant wealth can face severe challenges such as ownership disputes, liquidity constraints, tax inefficiencies, and uncertainty during leadership transitions. Structured Legacy was established to bridge this exact gap.
                     </p>
                     
-                    <div class="flex items-center space-x-6 pt-6 border-t border-gray-100">
-                        <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center">
-                            <i class="fas fa-bullseye text-2xl text-[#0d47a1]"></i>
+                    <div class="bg-blue-50 border border-blue-100 p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="w-14 h-14 rounded-full bg-[#0d47a1] flex items-center justify-center text-white flex-shrink-0 mt-1 shadow-lg">
+                            <i class="fas fa-bullseye text-xl"></i>
                         </div>
                         <div>
-                            <h4 class="text-xl font-bold text-gray-900">Our Mission</h4>
-                            <p class="text-gray-500">To transition 10,000 businesses from vulnerable growth to permanent, protected wealth.</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Our Mission</h3>
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                To help business owners, promoters, and families create structured frameworks that protect wealth, strengthen personal balance sheets, ensure business continuity, and preserve family legacy across generations. We believe wealth should not only be built successfully but also transferred efficiently and sustained responsibly.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -66,53 +108,205 @@
         <div class="absolute inset-0 bg-[#e0e5ec]/80 z-0"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-16 sr-bottom">
-                <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">Our Pillars</span>
-                <h2 class="text-4xl md:text-5xl font-black text-gray-900">The Values That Drive Us</h2>
+                <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">Our Philosophy</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900">What We Believe</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
-                        <i class="fas fa-shield-alt text-2xl text-[#0d47a1]"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3">Absolute Security</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">We leave nothing to chance. Every strategy is legally bulletproof and financially stress-tested.</p>
-                </div>
-                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-100 text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
-                        <i class="fas fa-user-secret text-2xl text-[#0d47a1]"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3">Strict Confidentiality</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Your financial blueprints are guarded with the highest level of corporate secrecy and encryption.</p>
-                </div>
-                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-200 text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom flex flex-col md:flex-row items-center md:items-start text-center md:text-left border border-white/50">
+                    <div class="w-16 h-16 rounded-full bg-white shadow-inner flex items-center justify-center mb-6 md:mb-0 md:mr-6 flex-shrink-0">
                         <i class="fas fa-chart-line text-2xl text-[#0d47a1]"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3">Relentless Growth</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Protection is our base, but compounding your capital at market-beating rates is our ultimate goal.</p>
-                </div>
-                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-300 text-center">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-white shadow-inner flex items-center justify-center mb-6">
-                        <i class="fas fa-handshake text-2xl text-[#0d47a1]"></i>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Wealth Creation Is Only The Beginning</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Building a successful business is an extraordinary achievement. Preserving that achievement for future generations requires an entirely different level of planning and structure.</p>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3">True Partnership</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">We don't act as outsourced consultants. We sit on your side of the table as your financial board.</p>
+                </div>
+                
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-100 flex flex-col md:flex-row items-center md:items-start text-center md:text-left border border-white/50">
+                    <div class="w-16 h-16 rounded-full bg-white shadow-inner flex items-center justify-center mb-6 md:mb-0 md:mr-6 flex-shrink-0">
+                        <i class="fas fa-sitemap text-2xl text-[#0d47a1]"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Structure Creates Continuity</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Businesses, assets, and family wealth perform best when supported by clearly defined legal frameworks, continuity protocols, and long-term strategies.</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-200 flex flex-col md:flex-row items-center md:items-start text-center md:text-left border border-white/50">
+                    <div class="w-16 h-16 rounded-full bg-white shadow-inner flex items-center justify-center mb-6 md:mb-0 md:mr-6 flex-shrink-0">
+                        <i class="fas fa-users text-2xl text-[#0d47a1]"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Family Harmony Matters</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Financial success alone cannot preserve a legacy. Governance, transparent communication, and alignment across generations play an equally important role.</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#e0e5ec] rounded-[2rem] p-8 shadow-[9px_9px_16px_rgb(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.6)] sr-bottom delay-300 flex flex-col md:flex-row items-center md:items-start text-center md:text-left border border-white/50">
+                    <div class="w-16 h-16 rounded-full bg-white shadow-inner flex items-center justify-center mb-6 md:mb-0 md:mr-6 flex-shrink-0">
+                        <i class="fas fa-landmark text-2xl text-[#0d47a1]"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Legacy Is Intentional</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Strong legacies are rarely accidental. They are built through thoughtful decisions, highly disciplined planning, and proactive preparation for the future.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="relative py-24 bg-fixed bg-center bg-cover flex items-center" 
+    <section class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                
+                <div class="lg:col-span-7 sr-left">
+                    <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-4 block">The Methodology</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">Our Approach</h2>
+                    <p class="text-gray-600 mb-10 text-lg">Every family and business is unique. For this reason, we do not believe in one-size-fits-all solutions. Our approach is based on understanding the complete picture before recommending any strategy.</p>
+                    
+                    <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+                        
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-[#0d47a1] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 font-bold z-10">1</div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                                <h4 class="font-bold text-gray-900 mb-2">Discovery</h4>
+                                <p class="text-sm text-gray-600">Understanding family dynamics, business structures, financial objectives, and long-term aspirations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-[#0d47a1] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 font-bold z-10">2</div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                                <h4 class="font-bold text-gray-900 mb-2">Design</h4>
+                                <p class="text-sm text-gray-600">Developing a structured roadmap aligned with wealth preservation, continuity, and legacy objectives.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-[#0d47a1] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 font-bold z-10">3</div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                                <h4 class="font-bold text-gray-900 mb-2">Implementation</h4>
+                                <p class="text-sm text-gray-600">Coordinating the execution of appropriate strategies, legal documentation, and frameworks.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-[#0d47a1] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 font-bold z-10">4</div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                                <h4 class="font-bold text-gray-900 mb-2">Review</h4>
+                                <p class="text-sm text-gray-600">Regularly evaluating plans to ensure they remain aligned with changing business and family circumstances.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 sr-right">
+                    <div class="bg-[#0a192f] p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden h-full border border-blue-900">
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600 rounded-full blur-3xl opacity-20"></div>
+                        <h2 class="text-3xl font-black text-white mb-8 relative z-10">Why Families Work With Us</h2>
+                        
+                        <ul class="space-y-6 relative z-10">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mt-1 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Long-Term Perspective</h4>
+                                    <p class="text-blue-100/70 text-sm mt-1">We focus on generational outcomes rather than short-term transactions.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mt-1 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Independent Thinking</h4>
+                                    <p class="text-blue-100/70 text-sm mt-1">Every family and business has unique priorities, challenges, and goals.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mt-1 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Confidential Advisory</h4>
+                                    <p class="text-blue-100/70 text-sm mt-1">We understand the critical importance of discretion, trust, and privacy.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mt-1 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Structured Frameworks</h4>
+                                    <p class="text-blue-100/70 text-sm mt-1">Recommendations guided by systematic planning, not isolated decisions.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mt-1 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Family-Centric Approach</h4>
+                                    <p class="text-blue-100/70 text-sm mt-1">Balancing business success with family continuity and long-term harmony.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#e0e5ec] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-[3rem] shadow-xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 sr-bottom border border-gray-100">
+                
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-gray-50 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="Ved - Founder of Structured Legacy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                </div>
+
+                <div class="w-full md:w-2/3 text-center md:text-left">
+                    <span class="text-[#0d47a1] font-bold tracking-widest uppercase text-sm mb-2 block">The Leadership</span>
+                    <h2 class="text-4xl font-black text-gray-900 mb-2">Ved</h2>
+                    <p class="text-gray-500 font-bold mb-6 uppercase tracking-wider text-sm">Founder, Structured Legacy</p>
+                    
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        Ved works closely with business owners, promoters, and family businesses to help them think beyond wealth creation and focus on wealth preservation, succession planning, business continuity, and legacy development.
+                    </p>
+                    
+                    <div class="bg-gray-50 p-6 rounded-2xl border-l-4 border-[#0d47a1] mb-6">
+                        <p class="text-gray-800 font-medium italic text-lg leading-relaxed">
+                            "Businesses are built through effort. Wealth is preserved through structure. Legacies endure through planning."
+                        </p>
+                    </div>
+
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        Through Structured Legacy, his goal is to help families create clarity, continuity, and absolute confidence for future generations.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-24 md:py-32 bg-fixed bg-center bg-cover flex items-center shadow-[inset_0_0_80px_rgba(0,0,0,0.9)]" 
              style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-blue-900/90 mix-blend-multiply z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0d47a1]/80 to-[#0a192f]/90 z-0"></div>
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center sr-bottom">
-            <h2 class="text-4xl md:text-5xl font-black text-white mb-8">Ready To Structure Your Legacy?</h2>
-            <p class="text-xl text-blue-100 mb-10 font-light leading-relaxed">
-                Join hundreds of successful entrepreneurs who sleep peacefully knowing their business and family are protected by ₹200 Cr structured frameworks.
+            
+            <div class="mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-blue-200 mb-4 tracking-wide leading-relaxed">
+                    Businesses create wealth. <br>
+                    Structure protects wealth. <br>
+                    Planning preserves wealth. <br>
+                    <span class="text-white font-black text-3xl md:text-4xl mt-4 block">Legacy extends wealth beyond a single generation.</span>
+                </h3>
+            </div>
+
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-xl border-t border-white/20 pt-12">
+                Ready To Protect What You Have Built?
+            </h2>
+            <p class="text-lg md:text-xl text-blue-100 mb-10 font-light leading-relaxed">
+                If you have spent years building a successful business, now may be the right time to begin planning for what comes next. Let's build your framework.
             </p>
-            <a href="/contact" class="inline-block bg-white text-[#0d47a1] px-10 py-5 rounded-2xl font-black text-lg hover:bg-gray-100 transition shadow-2xl hover:-translate-y-1">
-                Schedule A Private Consultation
+            <a href="/contact" class="inline-block bg-white text-[#0d47a1] px-10 py-5 rounded-2xl font-black text-lg hover:bg-gray-100 transition shadow-[0_15px_30px_rgba(255,255,255,0.2)] hover:-translate-y-1">
+                Schedule A Confidential Consultation
             </a>
         </div>
     </section>
@@ -121,9 +315,11 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        ScrollReveal().reveal('.sr-bottom', { delay: 150, distance: '50px', origin: 'bottom', duration: 800, interval: 150 });
-        ScrollReveal().reveal('.sr-left', { delay: 150, distance: '50px', origin: 'left', duration: 1000 });
-        ScrollReveal().reveal('.sr-right', { delay: 150, distance: '50px', origin: 'right', duration: 1000 });
+        if(typeof ScrollReveal !== 'undefined') {
+            ScrollReveal().reveal('.sr-bottom', { delay: 150, distance: '50px', origin: 'bottom', duration: 800, interval: 150 });
+            ScrollReveal().reveal('.sr-left', { delay: 150, distance: '50px', origin: 'left', duration: 1000 });
+            ScrollReveal().reveal('.sr-right', { delay: 150, distance: '50px', origin: 'right', duration: 1000 });
+        }
     });
 </script>
 
