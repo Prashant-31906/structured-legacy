@@ -13,9 +13,9 @@
   "@graph": [
     {
       "@type": "SoftwareApplication",
-      "name": "Structured Legacy Financial Calculators",
+      "name": "Structured Legacy Advanced Wealth Calculators",
       "applicationCategory": "BusinessApplication",
-      "description": "Smart financial planning tools to estimate SIP and Lumpsum investment growth, compounding impact, and wealth accumulation.",
+      "description": "Advanced financial planning tools including Monthly SIP, Annual SIP, and Lumpsum calculators with Invest & Hold period forecasting.",
       "operatingSystem": "Web",
       "provider": {
         "@type": "Organization",
@@ -27,18 +27,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is a SIP Calculator?",
+          "name": "What is an Annual SIP Calculator?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A SIP Calculator is a financial planning tool that estimates the future value of regular monthly investments based on expected returns and investment duration."
+            "text": "An Annual SIP Calculator helps you forecast the growth of a fixed lumpsum amount invested once every year, utilizing the power of annual compounding."
           }
         },
         {
           "@type": "Question",
-          "name": "What is a Lumpsum Calculator?",
+          "name": "What is the Hold Period in investing?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A Lumpsum Calculator estimates how a one-time investment may grow over a selected time period."
+            "text": "The Hold Period is a strategy where you stop making new investments but leave your accumulated corpus in the market to continue growing purely through compound interest."
           }
         },
         {
@@ -47,14 +47,6 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Neither approach is universally better. The appropriate choice depends on investment goals, available capital, risk tolerance, and time horizon."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Are calculator results guaranteed?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Calculator results are estimates based on the information provided and assumed rates of return. Actual investment outcomes may differ."
           }
         }
       ]
@@ -96,7 +88,7 @@
 
 <div id="loader" class="fixed inset-0 z-[100] bg-[#f8fafc] flex flex-col items-center justify-center">
     <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_usmfx6bp.json" background="transparent" speed="1.5" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
-    <h2 class="text-[#0d47a1] font-bold tracking-widest uppercase mt-4 animate-pulse">Loading Tools...</h2>
+    <h2 class="text-[#0d47a1] font-bold tracking-widest uppercase mt-4 animate-pulse">Loading Engine...</h2>
 </div>
 
 <main class="mt-[72px] overflow-x-hidden bg-[#f8fafc]">
@@ -107,42 +99,46 @@
         
         <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0a192f]/80 to-transparent z-0"></div>
         <div class="absolute top-1/4 left-0 w-full overflow-hidden flex z-0 opacity-40 pointer-events-none">
-            <div class="kinetic-text">WEALTH CREATION • FORECASTING • FINANCIAL PLANNING • SIP CALCULATOR • LUMPSUM</div>
+            <div class="kinetic-text">WEALTH CREATION • FORECASTING • ANNUAL SIP • INVEST & HOLD STRATEGY</div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
             <div class="inline-flex items-center bg-[#0d47a1]/90 text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold mb-4 tracking-widest shadow-inner border border-blue-400/30 uppercase">
                 <span class="w-2 h-2 rounded-full bg-blue-300 mr-3 animate-pulse"></span>
-                Financial Planning Tools
+                Advanced Wealth Forecasting
             </div>
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
-                Smart Financial Planning Starts <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">With Better Decisions.</span>
+                Architect Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">Financial Legacy.</span>
             </h1>
             <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
-                Whether you are building wealth through regular investments or investing a lump sum amount, understanding potential future outcomes is an important part of financial planning.
+                Estimate standard investments or utilize our advanced "Invest & Hold" feature to see how your money compounds even after you stop contributing.
             </p>
         </div>
     </section>
 
-    <!-- 2. THE CALCULATOR COMPONENT (Intact Functionality) -->
+    <!-- 2. THE CALCULATOR COMPONENT -->
     <section class="py-16 relative z-10 -mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 p-6 md:p-12">
                 <div class="text-center mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Investment Estimator</h2>
-                    <p class="text-gray-500 text-sm">Estimate investment growth and understand the impact of compounding.</p>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Master Investment Estimator</h2>
+                    <p class="text-gray-500 text-sm">Toggle between Monthly, Annual, or One-Time investments.</p>
                 </div>
                 
+                <!-- Advanced 3-Way Toggle -->
                 <div class="flex justify-center mb-10">
-                    <div class="bg-gray-100 p-2 flex space-x-2 w-full max-w-md rounded-2xl border border-gray-200">
-                        <button id="tab-sip" class="flex-1 py-3 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300" onclick="switchCalc('sip')">SIP Calculator</button>
-                        <button id="tab-lumpsum" class="flex-1 py-3 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300" onclick="switchCalc('lumpsum')">Lumpsum Calculator</button>
+                    <div class="bg-gray-100 p-2 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 w-full max-w-3xl rounded-2xl border border-gray-200">
+                        <button id="tab-sip" class="flex-1 py-3 px-2 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300" onclick="switchCalc('sip')">Monthly SIP</button>
+                        <button id="tab-yearly" class="flex-1 py-3 px-2 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300" onclick="switchCalc('yearly')">Annual SIP</button>
+                        <button id="tab-lumpsum" class="flex-1 py-3 px-2 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300" onclick="switchCalc('lumpsum')">One-Time Lumpsum</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <!-- LEFT: Inputs -->
                     <div class="lg:col-span-5 space-y-8">
+                        
+                        <!-- Input 1: Amount -->
                         <div>
                             <div class="flex justify-between items-center mb-3">
                                 <label id="label-amount" class="font-bold text-gray-800 text-lg">Monthly Investment</label>
@@ -154,6 +150,7 @@
                             <input type="range" id="range-amount" min="500" max="1000000" step="500" value="25000" class="w-full mt-2" oninput="updateInput('amount'); calculate()">
                         </div>
 
+                        <!-- Input 2: Rate -->
                         <div>
                             <div class="flex justify-between items-center mb-3">
                                 <label class="font-bold text-gray-800 text-lg">Expected Return Rate</label>
@@ -165,15 +162,31 @@
                             <input type="range" id="range-rate" min="1" max="50" step="0.5" value="12" class="w-full mt-2" oninput="updateInput('rate'); calculate()">
                         </div>
 
+                        <!-- Input 3: Investment Period -->
                         <div>
                             <div class="flex justify-between items-center mb-3">
-                                <label class="font-bold text-gray-800 text-lg">Time Period</label>
+                                <label id="label-years" class="font-bold text-gray-800 text-lg">Investment Period</label>
                                 <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/3 focus-within:ring-2 focus-within:ring-blue-500 transition">
                                     <input type="number" id="input-years" value="10" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('years'); calculate()">
                                     <span class="text-[#0d47a1] font-bold ml-2">Yr</span>
                                 </div>
                             </div>
                             <input type="range" id="range-years" min="1" max="50" step="1" value="10" class="w-full mt-2" oninput="updateInput('years'); calculate()">
+                        </div>
+
+                        <!-- Input 4: Hold Period (Hidden in Lumpsum) -->
+                        <div id="hold-period-container" class="bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <label class="font-bold text-indigo-900 text-lg block">Hold Period (Optional)</label>
+                                    <span class="text-xs text-indigo-500">Years to stay invested after stopping.</span>
+                                </div>
+                                <div class="bg-white border border-indigo-200 px-4 py-3 rounded-xl flex items-center w-1/3 focus-within:ring-2 focus-within:ring-indigo-500 transition shadow-sm">
+                                    <input type="number" id="input-hold" value="0" class="w-full bg-transparent border-none outline-none font-black text-indigo-900 text-right text-lg" oninput="updateRange('hold'); calculate()">
+                                    <span class="text-indigo-600 font-bold ml-2">Yr</span>
+                                </div>
+                            </div>
+                            <input type="range" id="range-hold" min="0" max="40" step="1" value="0" class="w-full mt-2" oninput="updateInput('hold'); calculate()">
                         </div>
 
                         <button onclick="generateReport()" class="w-full mt-8 bg-[#0d47a1] hover:bg-blue-800 text-white font-black py-4 rounded-2xl shadow-[0_8px_20px_rgba(13,71,161,0.25)] hover:-translate-y-1 transition-all uppercase tracking-widest text-sm flex justify-center items-center border-2 border-[#0d47a1]">
@@ -196,6 +209,7 @@
                                 <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-600 rounded-full blur-3xl opacity-30"></div>
                                 <p class="text-sm font-bold text-[#d4af37] uppercase tracking-widest mb-2 relative z-10">Total Wealth Generated</p>
                                 <h2 class="text-4xl md:text-5xl font-black text-white drop-shadow-md relative z-10" id="display-total">₹0</h2>
+                                <p id="hold-badge" class=" mt-3 text-xs bg-indigo-500/20 text-indigo-200 px-3 py-1 rounded-full inline-block font-medium tracking-wide border border-indigo-400/30 relative z-10">Includes Hold Period</p>
                             </div>
                         </div>
 
@@ -214,7 +228,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-8 bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                 <div class="text-center md:text-left mb-4 md:mb-0">
                     <h3 class="text-2xl font-black text-gray-900">Detailed Projection Report</h3>
-                    <p class="text-gray-500 text-sm mt-1">Review your year-by-year wealth growth trajectory.</p>
+                    <p class="text-gray-500 text-sm mt-1" id="report-subtitle">Review your year-by-year wealth growth trajectory.</p>
                 </div>
                 <button onclick="downloadPDF()" class="bg-[#0a192f] text-white px-8 py-3 rounded-xl font-bold hover:bg-black transition shadow-lg flex items-center">
                     <i class="fas fa-file-pdf mr-3 text-red-400 text-xl"></i> Download PDF
@@ -227,6 +241,7 @@
                         <thead>
                             <tr class="bg-[#0a192f] text-white text-sm uppercase tracking-wider">
                                 <th class="p-4 rounded-tl-xl font-bold">Year</th>
+                                <th class="p-4 font-bold">Phase</th>
                                 <th class="p-4 font-bold">Total Invested</th>
                                 <th class="p-4 font-bold">Est. Returns</th>
                                 <th class="p-4 rounded-tr-xl font-bold">End Value</th>
@@ -244,64 +259,30 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 
-                <!-- Left Content -->
                 <div class="space-y-12">
                     <div>
-                        <h2 class="text-3xl font-black text-gray-900 mb-4">Why Investment Calculators Matter</h2>
+                        <h2 class="text-3xl font-black text-gray-900 mb-4">The "Invest & Hold" Strategy</h2>
                         <p class="text-gray-600 leading-relaxed mb-4 text-justify">
-                            Financial planning often involves making decisions based on future expectations rather than current circumstances alone. Investment calculators can help provide clarity by illustrating how variables such as investment amount, time horizon, and expected returns may influence future outcomes.
+                            Wealth creation isn't just about how long you actively invest; it's heavily dependent on how long you let the money compound. The <strong>Hold Period</strong> feature allows you to model what happens if you stop investing after 'X' years, but leave the accumulated corpus untouched for another 'Y' years.
                         </p>
-                        <ul class="space-y-3 mt-6">
-                            <li class="flex items-center text-gray-700 font-medium"><i class="fas fa-check-circle text-[#0d47a1] mr-3"></i> Understanding the power of compounding</li>
-                            <li class="flex items-center text-gray-700 font-medium"><i class="fas fa-check-circle text-[#0d47a1] mr-3"></i> Comparing different investment scenarios</li>
-                            <li class="flex items-center text-gray-700 font-medium"><i class="fas fa-check-circle text-[#0d47a1] mr-3"></i> Setting realistic financial goals</li>
-                            <li class="flex items-center text-gray-700 font-medium"><i class="fas fa-check-circle text-[#0d47a1] mr-3"></i> Planning long-term wealth accumulation</li>
-                            <li class="flex items-center text-gray-700 font-medium"><i class="fas fa-check-circle text-[#0d47a1] mr-3"></i> Evaluating investment strategies</li>
-                        </ul>
+                        <p class="text-gray-600 leading-relaxed text-justify">
+                            This is particularly powerful for retirement or legacy planning, where you might aggressively invest during your peak earning years and then let the market do the heavy lifting in the subsequent decades.
+                        </p>
                     </div>
 
                     <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 shadow-inner">
-                        <h3 class="text-2xl font-black text-gray-900 mb-4">SIP Vs Lumpsum Investing</h3>
+                        <h3 class="text-2xl font-black text-gray-900 mb-4">Annual SIP vs Monthly SIP</h3>
                         <p class="text-gray-700 leading-relaxed mb-4 text-justify">
-                            Both approaches serve different financial objectives. SIP investing is often preferred when capital is accumulated gradually and regular investing is desired. Lumpsum investing may be appropriate when funds are available upfront and the investor seeks immediate market participation.
-                        </p>
-                        <p class="text-gray-700 leading-relaxed font-semibold italic text-justify">
-                            The appropriate approach depends on individual circumstances, financial objectives, risk tolerance, and investment horizon.
+                            While Monthly SIPs are great for salaried professionals, <strong>Annual SIPs</strong> (investing a lumpsum amount once a year) are highly preferred by business owners who receive yearly dividends or bonuses. An Annual SIP allows for bulk market participation at the start of every financial year.
                         </p>
                     </div>
                 </div>
 
-                <!-- Right Content -->
                 <div class="space-y-12">
-                    <div>
-                        <h2 class="text-3xl font-black text-gray-900 mb-4">Understanding SIP Investing</h2>
-                        <p class="text-gray-600 leading-relaxed mb-6 text-justify">
-                            A Systematic Investment Plan allows investors to invest a fixed amount at regular intervals. Rather than attempting to time the market, SIP investing focuses on consistency and long-term participation.
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="border border-gray-200 rounded-2xl p-5 hover:shadow-md transition">
-                                <h4 class="font-bold text-[#0d47a1] mb-2"><i class="fas fa-calendar-check mr-2"></i> Disciplined</h4>
-                                <p class="text-xs text-gray-600">Regular contributions help build strict investment habits over time.</p>
-                            </div>
-                            <div class="border border-gray-200 rounded-2xl p-5 hover:shadow-md transition">
-                                <h4 class="font-bold text-[#0d47a1] mb-2"><i class="fas fa-balance-scale mr-2"></i> Rupee Cost Averaging</h4>
-                                <p class="text-xs text-gray-600">Investments are made across different market conditions automatically.</p>
-                            </div>
-                            <div class="border border-gray-200 rounded-2xl p-5 hover:shadow-md transition">
-                                <h4 class="font-bold text-[#0d47a1] mb-2"><i class="fas fa-chart-area mr-2"></i> Compounding</h4>
-                                <p class="text-xs text-gray-600">Returns generated over time contribute to significant long-term growth.</p>
-                            </div>
-                            <div class="border border-gray-200 rounded-2xl p-5 hover:shadow-md transition">
-                                <h4 class="font-bold text-[#0d47a1] mb-2"><i class="fas fa-door-open mr-2"></i> Accessibility</h4>
-                                <p class="text-xs text-gray-600">SIPs allow investors to begin investing with relatively small amounts.</p>
-                            </div>
-                        </div>
-                    </div>
-
                     <div>
                         <h2 class="text-3xl font-black text-gray-900 mb-4">Understanding Lumpsum Investing</h2>
                         <p class="text-gray-600 leading-relaxed mb-6 text-justify">
-                            Lumpsum investing involves investing a larger amount of capital at one time. This approach may be suitable when funds are already available and the investor has a long-term investment horizon.
+                            Lumpsum investing involves injecting a large amount of capital into the market at one time. This approach ensures your entire capital starts participating in market compounding immediately, making it ideal for windfalls, business exits, or inherited wealth.
                         </p>
                         <div class="space-y-4">
                             <div class="flex items-start">
@@ -314,15 +295,8 @@
                             <div class="flex items-start">
                                 <i class="fas fa-seedling text-[#0d47a1] mt-1 mr-4 text-xl"></i>
                                 <div>
-                                    <h4 class="font-bold text-gray-900">Potential For Long-Term Growth</h4>
-                                    <p class="text-sm text-gray-600">Long investment periods may enhance compounding benefits significantly.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-check-double text-[#0d47a1] mt-1 mr-4 text-xl"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">Simplicity</h4>
-                                    <p class="text-sm text-gray-600">A single investment transaction can be much easier to manage and track.</p>
+                                    <h4 class="font-bold text-gray-900">Maximum Compounding</h4>
+                                    <p class="text-sm text-gray-600">100% of your capital enjoys the full time horizon for growth.</p>
                                 </div>
                             </div>
                         </div>
@@ -333,7 +307,7 @@
         </div>
     </section>
 
-    <!-- 4. FAQ SECTION (LLM SEO Optimized) -->
+    <!-- 4. FAQ SECTION -->
     <section class="py-24 bg-[#e0e5ec] relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -344,31 +318,21 @@
             <div class="space-y-4">
                 <details class="group bg-white border border-gray-200 rounded-2xl open:shadow-md transition-all duration-300" open>
                     <summary class="flex justify-between items-center font-bold p-6 md:p-8 text-gray-900 cursor-pointer text-lg">
-                        <span>What is a SIP Calculator?</span>
+                        <span>What is an Annual SIP Calculator?</span>
                         <span class="transition-transform duration-300 group-open:rotate-180 text-[#0d47a1] bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 ml-4"><i class="fas fa-chevron-down"></i></span>
                     </summary>
                     <div class="text-gray-700 p-6 md:p-8 pt-0 leading-relaxed text-base border-t border-gray-100 mt-2">
-                        A Systematic Investment Plan (SIP) Calculator is a financial planning tool that estimates the future value of regular monthly investments based on expected returns and investment duration.
+                        An Annual SIP Calculator helps you forecast the growth of a fixed lumpsum amount invested once every year, utilizing the power of annual compounding. It is perfect for business owners.
                     </div>
                 </details>
                 
                 <details class="group bg-white border border-gray-200 rounded-2xl open:shadow-md transition-all duration-300">
                     <summary class="flex justify-between items-center font-bold p-6 md:p-8 text-gray-900 cursor-pointer text-lg">
-                        <span>What is a Lumpsum Calculator?</span>
+                        <span>What is the Hold Period in investing?</span>
                         <span class="transition-transform duration-300 group-open:rotate-180 text-[#0d47a1] bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 ml-4"><i class="fas fa-chevron-down"></i></span>
                     </summary>
                     <div class="text-gray-700 p-6 md:p-8 pt-0 leading-relaxed text-base border-t border-gray-100 mt-2">
-                        A Lumpsum Calculator estimates how a one-time investment may grow over a selected time period. It is useful for evaluating how single investments grow under different return assumptions.
-                    </div>
-                </details>
-
-                <details class="group bg-white border border-gray-200 rounded-2xl open:shadow-md transition-all duration-300">
-                    <summary class="flex justify-between items-center font-bold p-6 md:p-8 text-gray-900 cursor-pointer text-lg">
-                        <span>Are calculator results guaranteed?</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180 text-[#0d47a1] bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 ml-4"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <div class="text-gray-700 p-6 md:p-8 pt-0 leading-relaxed text-base border-t border-gray-100 mt-2">
-                        No. Calculator results are estimates based on the information provided and assumed rates of return. Actual investment outcomes may differ based on market conditions.
+                        The Hold Period is an advanced strategy where you stop making new investments but leave your accumulated corpus in the market to continue growing purely through compound interest.
                     </div>
                 </details>
 
@@ -378,53 +342,26 @@
                         <span class="transition-transform duration-300 group-open:rotate-180 text-[#0d47a1] bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 ml-4"><i class="fas fa-chevron-down"></i></span>
                     </summary>
                     <div class="text-gray-700 p-6 md:p-8 pt-0 leading-relaxed text-base border-t border-gray-100 mt-2">
-                        Neither approach is universally better. The appropriate choice depends on investment goals, available capital, risk tolerance, and time horizon.
-                    </div>
-                </details>
-
-                <details class="group bg-white border border-gray-200 rounded-2xl open:shadow-md transition-all duration-300">
-                    <summary class="flex justify-between items-center font-bold p-6 md:p-8 text-gray-900 cursor-pointer text-lg">
-                        <span>Can these calculators be used for financial planning?</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180 text-[#0d47a1] bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 ml-4"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <div class="text-gray-700 p-6 md:p-8 pt-0 leading-relaxed text-base border-t border-gray-100 mt-2">
-                        These tools can heavily support planning and decision-making by offering projections, but they should not be considered strict financial advice.
+                        Neither approach is universally better. SIP averages out market volatility, while Lumpsum maximizes the time your capital spends in the market. The choice depends on your capital availability.
                     </div>
                 </details>
             </div>
             
             <div class="mt-12 text-center text-xs text-gray-500 bg-white p-6 rounded-2xl border border-gray-300">
                 <span class="font-bold text-gray-700 block mb-2 uppercase tracking-widest">Important Disclaimer</span>
-                The information and estimates provided by these calculators are for educational and illustrative purposes only. Actual investment performance may vary based on market conditions and other factors. Users should evaluate their own circumstances before making financial decisions.
+                The information and estimates provided by these calculators are for educational and illustrative purposes only. Actual investment performance may vary based on market conditions.
             </div>
-        </div>
-    </section>
-
-    <!-- 5. CTA / BEYOND CALCULATORS -->
-    <section class="relative py-24 md:py-32 bg-fixed bg-center bg-cover flex items-center shadow-[inset_0_0_80px_rgba(0,0,0,0.9)]" 
-             style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-[#0a192f]/95 mix-blend-multiply z-0"></div>
-        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-xl">Looking Beyond Calculators?</h2>
-            <p class="text-lg md:text-xl text-blue-100 mb-10 font-light leading-relaxed">
-                Investment calculators can provide useful projections, but long-term wealth preservation, succession planning, and legacy creation often require a broader strategic framework.
-            </p>
-            <p class="text-base text-gray-300 mb-12">
-                If you would like to discuss wealth structuring, business continuity, or long-term legacy objectives, we invite you to schedule a confidential strategy consultation.
-            </p>
-            <a href="/contact" class="inline-flex items-center justify-center bg-[#d4af37] text-[#0a192f] px-10 py-5 rounded-xl font-black text-lg hover:bg-white transition shadow-lg uppercase tracking-wider">
-                Book Strategy Consultation
-            </a>
         </div>
     </section>
 
 </main>
 
-<!-- CALCULATOR LOGIC (Unchanged) -->
+<!-- ADVANCED CALCULATOR LOGIC -->
 <script>
-    let currentMode = 'sip'; 
+    let currentMode = 'sip'; // sip, yearly, lumpsum
     let wealthChart;
     let reportDataRows = []; 
+    let finalPhase1Value = 0; // Stores value after investment phase
 
     const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(Math.round(num));
 
@@ -433,21 +370,42 @@
 
     function switchCalc(mode) {
         currentMode = mode;
-        const btnSip = document.getElementById('tab-sip');
-        const btnLump = document.getElementById('tab-lumpsum');
+        
+        // Reset Tabs styling
+        ['sip', 'yearly', 'lumpsum'].forEach(m => {
+            document.getElementById(`tab-${m}`).className = 'flex-1 py-3 px-2 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300';
+        });
+        document.getElementById(`tab-${mode}`).className = 'flex-1 py-3 px-2 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300';
+
         const labelAmount = document.getElementById('label-amount');
+        const labelYears = document.getElementById('label-years');
+        const holdContainer = document.getElementById('hold-period-container');
 
         if(mode === 'sip') {
-            btnSip.className = 'flex-1 py-3 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300';
-            btnLump.className = 'flex-1 py-3 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300';
             labelAmount.innerText = 'Monthly Investment';
+            labelYears.innerText = 'Investment Period';
+            holdContainer.style.display = 'block';
+            if(document.getElementById('input-amount').value >= 100000) {
+                document.getElementById('input-amount').value = 25000;
+                document.getElementById('range-amount').value = 25000;
+            }
+        } else if (mode === 'yearly') {
+            labelAmount.innerText = 'Annual Investment';
+            labelYears.innerText = 'Investment Period';
+            holdContainer.style.display = 'block';
+            if(document.getElementById('input-amount').value <= 50000) {
+                document.getElementById('input-amount').value = 300000;
+                document.getElementById('range-amount').value = 300000;
+            }
         } else {
-            btnLump.className = 'flex-1 py-3 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300';
-            btnSip.className = 'flex-1 py-3 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300';
-            labelAmount.innerText = 'Total Investment';
-            if(document.getElementById('input-amount').value == 25000) {
-                document.getElementById('input-amount').value = 500000;
-                document.getElementById('range-amount').value = 500000;
+            labelAmount.innerText = 'One-Time Lumpsum';
+            labelYears.innerText = 'Total Duration';
+            holdContainer.style.display = 'none'; // Hide hold period for pure lumpsum
+            document.getElementById('input-hold').value = 0;
+            document.getElementById('range-hold').value = 0;
+            if(document.getElementById('input-amount').value <= 100000) {
+                document.getElementById('input-amount').value = 1000000;
+                document.getElementById('range-amount').value = 1000000;
             }
         }
         calculate();
@@ -458,18 +416,36 @@
 
         const amount = parseFloat(document.getElementById('input-amount').value) || 0;
         const rate = parseFloat(document.getElementById('input-rate').value) || 0;
-        const years = parseFloat(document.getElementById('input-years').value) || 0;
+        const invYears = parseFloat(document.getElementById('input-years').value) || 0;
+        const holdYears = currentMode === 'lumpsum' ? 0 : (parseFloat(document.getElementById('input-hold').value) || 0);
 
-        let totalInvested = 0, totalValue = 0;
+        let totalInvested = 0;
+        finalPhase1Value = 0;
 
+        // --- PHASE 1: INVESTMENT ---
         if (currentMode === 'sip') {
-            const months = years * 12;
+            const months = invYears * 12;
             const monthlyRate = rate / 12 / 100;
             totalInvested = amount * months;
-            totalValue = monthlyRate === 0 ? totalInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
-        } else {
+            finalPhase1Value = monthlyRate === 0 ? totalInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+        } else if (currentMode === 'yearly') {
+            const yearlyRate = rate / 100;
+            totalInvested = amount * invYears;
+            finalPhase1Value = yearlyRate === 0 ? totalInvested : amount * ((Math.pow(1 + yearlyRate, invYears) - 1) / yearlyRate) * (1 + yearlyRate);
+        } else { // lumpsum
+            const yearlyRate = rate / 100;
             totalInvested = amount;
-            totalValue = amount * Math.pow(1 + rate/100, years);
+            finalPhase1Value = amount * Math.pow(1 + yearlyRate, invYears); // For lumpsum, invYears acts as total duration
+        }
+
+        // --- PHASE 2: HOLDING (Only applies to SIP and Yearly) ---
+        let totalValue = finalPhase1Value;
+        if (holdYears > 0) {
+            const yearlyRate = rate / 100;
+            totalValue = finalPhase1Value * Math.pow(1 + yearlyRate, holdYears);
+            document.getElementById('hold-badge').classList.remove('hidden');
+        } else {
+            document.getElementById('hold-badge').classList.add('hidden');
         }
 
         const estReturns = totalValue - totalInvested;
@@ -509,38 +485,63 @@
     function generateReport() {
         const amount = parseFloat(document.getElementById('input-amount').value) || 0;
         const rate = parseFloat(document.getElementById('input-rate').value) || 0;
-        const years = parseFloat(document.getElementById('input-years').value) || 0;
+        const invYears = parseFloat(document.getElementById('input-years').value) || 0;
+        const holdYears = currentMode === 'lumpsum' ? 0 : (parseFloat(document.getElementById('input-hold').value) || 0);
+        const totalYears = invYears + holdYears;
 
         const tbody = document.getElementById('report-table-body');
         tbody.innerHTML = ''; 
         reportDataRows = []; 
 
-        let cumulativeInvested = 0, cumulativeValue = 0;
+        let cumulativeInvested = 0;
+        let cumulativeValue = 0;
+        let phaseLabel = "";
 
-        for (let y = 1; y <= years; y++) {
-            if (currentMode === 'sip') {
-                const months = y * 12;
-                const monthlyRate = rate / 12 / 100;
-                cumulativeInvested = amount * months;
-                cumulativeValue = monthlyRate === 0 ? cumulativeInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+        for (let y = 1; y <= totalYears; y++) {
+            
+            if (y <= invYears) {
+                // Investment Phase
+                phaseLabel = `<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Investing</span>`;
+                if (currentMode === 'sip') {
+                    const months = y * 12;
+                    const monthlyRate = rate / 12 / 100;
+                    cumulativeInvested = amount * months;
+                    cumulativeValue = monthlyRate === 0 ? cumulativeInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+                } else if (currentMode === 'yearly') {
+                    const yearlyRate = rate / 100;
+                    cumulativeInvested = amount * y;
+                    cumulativeValue = yearlyRate === 0 ? cumulativeInvested : amount * ((Math.pow(1 + yearlyRate, y) - 1) / yearlyRate) * (1 + yearlyRate);
+                } else { // lumpsum
+                    const yearlyRate = rate / 100;
+                    cumulativeInvested = amount;
+                    cumulativeValue = amount * Math.pow(1 + yearlyRate, y);
+                    phaseLabel = `<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Compounding</span>`;
+                }
             } else {
-                cumulativeInvested = amount;
-                cumulativeValue = amount * Math.pow(1 + rate/100, y);
+                // Hold Phase (No new investments)
+                phaseLabel = `<span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Holding</span>`;
+                const holdYearCount = y - invYears;
+                const yearlyRate = rate / 100;
+                cumulativeValue = finalPhase1Value * Math.pow(1 + yearlyRate, holdYearCount);
             }
 
             const estReturns = cumulativeValue - cumulativeInvested;
             
             reportDataRows.push({
                 year: y,
+                phaseStr: y <= invYears ? (currentMode==='lumpsum'?'Compound':'Invest') : 'Hold',
                 invested: '₹' + formatCurrency(cumulativeInvested),
                 returns: '₹' + formatCurrency(estReturns),
                 total: '₹' + formatCurrency(cumulativeValue)
             });
 
             const bgClass = y % 2 === 0 ? 'bg-gray-50' : 'bg-white';
+            const textHighlight = y > invYears && currentMode !== 'lumpsum' ? 'text-indigo-900 bg-indigo-50/30' : '';
+
             tbody.innerHTML += `
-                <tr class="${bgClass} border-b border-gray-100 hover:bg-blue-50 transition-colors">
-                    <td class="p-4 font-bold text-gray-900">${y}</td>
+                <tr class="${bgClass} ${textHighlight} border-b border-gray-100 hover:bg-blue-50 transition-colors">
+                    <td class="p-4 font-bold text-gray-900">Year ${y}</td>
+                    <td class="p-4">${phaseLabel}</td>
                     <td class="p-4">₹${formatCurrency(cumulativeInvested)}</td>
                     <td class="p-4 text-[#0d47a1] font-bold">₹${formatCurrency(estReturns)}</td>
                     <td class="p-4 font-black text-gray-900">₹${formatCurrency(cumulativeValue)}</td>
@@ -553,51 +554,90 @@
         reportSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+    // ================= CLIENT-SIDE PDF GENERATOR ================= //
     async function downloadPDF() {
         Swal.fire({
             title: 'Generating Report...',
-            html: 'Compiling your financial data into a premium PDF.',
+            html: 'Compiling your financial forecasting data.',
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
         });
 
-        const payload = {
-            reportType: currentMode === 'sip' ? 'SIP Investment Forecast' : 'Lumpsum Investment Forecast',
-            invested: document.getElementById('display-invested').innerText,
-            returns: document.getElementById('display-returns').innerText,
-            total: document.getElementById('display-total').innerText,
-            rows: reportDataRows
+        let reportName = currentMode === 'sip' ? 'Monthly SIP' : (currentMode === 'yearly' ? 'Annual SIP' : 'One-Time Lumpsum');
+        
+        const reportElement = document.createElement('div');
+        reportElement.innerHTML = `
+            <div style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #0a192f; background: #ffffff;">
+                <h1 style="color: #0d47a1; text-align: center; margin-bottom: 5px; font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">
+                    Structured Legacy
+                </h1>
+                <h3 style="text-align: center; color: #475569; margin-top: 0; margin-bottom: 30px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px;">
+                    ${reportName} Forecast Report
+                </h3>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: 30px; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <div style="text-align: center; width: 30%;">
+                        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold;">Total Invested</span><br>
+                        <strong style="font-size: 18px; color: #0f172a;">${document.getElementById('display-invested').innerText}</strong>
+                    </div>
+                    <div style="text-align: center; width: 30%; border-left: 1px solid #cbd5e1; border-right: 1px solid #cbd5e1;">
+                        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold;">Est. Returns</span><br>
+                        <strong style="font-size: 18px; color: #16a34a;">${document.getElementById('display-returns').innerText}</strong>
+                    </div>
+                    <div style="text-align: center; width: 30%;">
+                        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #0d47a1; font-weight: bold;">Total Wealth</span><br>
+                        <strong style="font-size: 22px; color: #0d47a1;">${document.getElementById('display-total').innerText}</strong>
+                    </div>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 12px;">
+                    <thead>
+                        <tr style="background-color: #0a192f; color: white;">
+                            <th style="padding: 12px; border: 1px solid #1e293b;">Year</th>
+                            <th style="padding: 12px; border: 1px solid #1e293b;">Phase</th>
+                            <th style="padding: 12px; border: 1px solid #1e293b;">Total Invested</th>
+                            <th style="padding: 12px; border: 1px solid #1e293b;">Est. Returns</th>
+                            <th style="padding: 12px; border: 1px solid #1e293b;">End Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${reportDataRows.map((row, index) => `
+                            <tr style="background-color: ${row.phaseStr === 'Hold' ? '#eef2ff' : (index % 2 === 0 ? '#f8fafc' : '#ffffff')};">
+                                <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold;">${row.year}</td>
+                                <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold; color: ${row.phaseStr === 'Hold' ? '#4338ca' : '#475569'};">${row.phaseStr}</td>
+                                <td style="padding: 10px; border: 1px solid #e2e8f0;">${row.invested}</td>
+                                <td style="padding: 10px; border: 1px solid #e2e8f0; color: #16a34a;">${row.returns}</td>
+                                <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold; color: #0d47a1;">${row.total}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center;">
+                    <p style="font-size: 10px; color: #94a3b8; margin: 0;">
+                        <strong>Disclaimer:</strong> The estimates provided in this report are for educational purposes. Actual performance may vary.
+                    </p>
+                    <p style="font-size: 10px; color: #94a3b8; margin-top: 5px;">
+                        Generated securely by <strong>Structured Legacy</strong> | www.structuredlegacy.com
+                    </p>
+                </div>
+            </div>
+        `;
+
+        const opt = {
+            margin:       0,
+            filename:     `Structured_Legacy_${reportName.replace(' ', '_')}_Forecast.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
         };
 
         try {
-            const response = await fetch('/api/download-pdf', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) throw new Error('Failed to generate PDF');
-
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = payload.reportType.split(' ')[0] + '_Report.pdf';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            
-            Swal.fire({
-                icon: 'success',
-                title: 'Downloaded!',
-                text: 'Your PDF report is ready.',
-                confirmButtonColor: '#0d47a1'
-            });
-
+            await html2pdf().set(opt).from(reportElement).save();
+            Swal.fire({ icon: 'success', title: 'Downloaded!', text: 'Your PDF report is ready.', confirmButtonColor: '#0d47a1' });
         } catch (error) {
-            console.error(error);
-            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong while generating the PDF.' });
+            console.error("PDF Error: ", error);
+            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Failed to generate PDF.' });
         }
     }
 
