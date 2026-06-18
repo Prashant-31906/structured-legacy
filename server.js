@@ -396,89 +396,122 @@ app.post('/api/contact', async (req, res) => {
 app.post('/api/download-pdf', async (req, res) => {
     try {
         const { reportType, invested, returns, total, rows } = req.body;
-        const date = new Date().toLocaleDateString('en-IN');
 
-        // Create a Clean HTML Template for the PDF
+        // Perfect corporate styled HTML for Puppeteer to print
         const htmlContent = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <style>
-                    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; padding: 40px; }
-                    .header { border-bottom: 2px solid #0d47a1; padding-bottom: 10px; margin-bottom: 20px; }
-                    .header h1 { color: #0d47a1; margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 1px; }
-                    .header p { color: #666; margin: 5px 0 0 0; font-size: 14px; }
-                    .summary { display: flex; justify-content: space-between; background-color: #f0f4f8; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #dbeafe; }
-                    .summary div { text-align: center; width: 30%; }
-                    .summary span { font-size: 11px; color: #64748b; text-transform: uppercase; font-weight: bold; }
-                    .summary h3 { font-size: 18px; margin: 8px 0 0 0; color: #0f172a; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                    th { background-color: #f8fafc; text-align: left; padding: 12px; font-size: 12px; text-transform: uppercase; color: #475569; border-bottom: 2px solid #cbd5e1; }
-                    td { padding: 12px; font-size: 14px; color: #334155; border-bottom: 1px solid #e2e8f0; }
-                    .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #cbd5e1; text-align: center; font-size: 10px; color: #94a3b8; }
-                </style>
-            </head>
-            <body>
-                <div class="header">
-                    <h1>Structured Legacy</h1>
-                    <p style="float: right;">Date: ${date}</p>
-                    <p>${reportType}</p>
-                </div>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>${reportType}</title>
+            <style>
+                body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #0a192f; background: #ffffff; padding: 40px; margin: 0; }
+                h1 { color: #0d47a1; text-align: center; margin-bottom: 5px; font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+                h3 { text-align: center; color: #475569; margin-top: 0; margin-bottom: 30px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; }
                 
-                <div class="summary">
-                    <div><span>Total Invested</span><h3>${invested}</h3></div>
-                    <div><span>Est. Returns</span><h3 style="color: #16a34a;">${returns}</h3></div>
-                    <div><span>Total Wealth</span><h3 style="color: #0d47a1;">${total}</h3></div>
+                .summary-container { display: flex; justify-content: space-between; margin-bottom: 30px; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
+                .summary-box { text-align: center; width: 33%; }
+                .border-box { border-left: 1px solid #cbd5e1; border-right: 1px solid #cbd5e1; }
+                .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold; }
+                .val { font-size: 16px; color: #0f172a; font-weight: bold; margin-top: 5px; display: inline-block; }
+                .val-returns { font-size: 16px; color: #16a34a; font-weight: bold; margin-top: 5px; display: inline-block; }
+                .val-total { font-size: 20px; color: #0d47a1; font-weight: bold; margin-top: 5px; display: inline-block; }
+                
+                table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; margin-top: 20px; }
+                th { background-color: #0a192f; color: white; padding: 12px; border: 1px solid #1e293b; font-weight: bold; text-transform: uppercase; font-size: 10px; letter-spacing: 1px; }
+                td { padding: 10px; border: 1px solid #e2e8f0; }
+                
+                .row-even { background-color: #f8fafc; }
+                .row-odd { background-color: #ffffff; }
+                .row-hold { background-color: #eef2ff; }
+                .text-hold { color: #4338ca; font-weight: bold; text-transform: uppercase; font-size: 10px; }
+                .text-invest { color: #16a34a; font-weight: bold; text-transform: uppercase; font-size: 10px; }
+                .text-compound { color: #2563eb; font-weight: bold; text-transform: uppercase; font-size: 10px; }
+                
+                .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center; }
+                .disclaimer { font-size: 10px; color: #94a3b8; margin: 0; line-height: 1.5; text-align: justify; }
+            </style>
+        </head>
+        <body>
+            <h1>Structured Legacy</h1>
+            <h3>${reportType}</h3>
+            
+            <div class="summary-container">
+                <div class="summary-box">
+                    <span class="label">Total Invested</span><br>
+                    <span class="val">${invested}</span>
                 </div>
+                <div class="summary-box border-box">
+                    <span class="label">Est. Returns</span><br>
+                    <span class="val-returns">${returns}</span>
+                </div>
+                <div class="summary-box">
+                    <span class="label" style="color: #0d47a1;">Total Wealth</span><br>
+                    <span class="val-total">${total}</span>
+                </div>
+            </div>
 
-                <table>
-                    <thead>
-                        <tr><th>Year</th><th>Total Invested</th><th>Est. Returns</th><th>End Value</th></tr>
-                    </thead>
-                    <tbody>
-                        ${rows.map(row => `
-                            <tr>
-                                <td><b>${row.year}</b></td>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Phase</th>
+                        <th>Total Invested</th>
+                        <th>Est. Returns</th>
+                        <th>End Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows.map((row, index) => {
+                        const isHold = row.phaseStr === 'Hold';
+                        const isCompound = row.phaseStr === 'Compound';
+                        const rowClass = isHold ? 'row-hold' : (index % 2 === 0 ? 'row-even' : 'row-odd');
+                        const phaseClass = isHold ? 'text-hold' : (isCompound ? 'text-compound' : 'text-invest');
+                        
+                        return `
+                            <tr class="${rowClass}">
+                                <td style="font-weight: bold;">Year ${row.year}</td>
+                                <td class="${phaseClass}">${row.phaseStr}</td>
                                 <td>${row.invested}</td>
-                                <td style="color: #16a34a;">${row.returns}</td>
-                                <td style="color: #0d47a1; font-weight: bold;">${row.total}</td>
+                                <td style="color: #16a34a; font-weight: bold;">${row.returns}</td>
+                                <td style="font-weight: bold; color: #0d47a1;">${row.total}</td>
                             </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
 
-                <div class="footer">
-                    <p>Disclaimer: Mutual Fund investments are subject to market risks. Calculations are illustrative and do not represent actual returns.</p>
-                    <p><strong>www.structuredlegacy.com</strong></p>
-                </div>
-            </body>
-            </html>
+            <div class="footer">
+                <p class="disclaimer"><strong>Disclaimer:</strong> The financial estimates and growth projections provided in this report are generated for educational and illustrative purposes only based on mathematical compounding equations. Actual investment performance fluctuates according to active market parameters and asset performance risk profiles.</p>
+                <p style="font-size: 10px; color: #94a3b8; margin-top: 8px; font-weight: bold;">Generated securely via Structured Legacy Core Tool Engine | www.structuredlegacy.com</p>
+            </div>
+        </body>
+        </html>
         `;
 
-        // Launch Puppeteer (Headless Browser)
-        const browser = await puppeteer.launch({ headless: "new", args: ['--no-sandbox'] });
+        // Launch Puppeteer headless browser
+        const browser = await puppeteer.launch({ headless: 'new' });
         const page = await browser.newPage();
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
         
-        // Generate PDF Buffer
-        const pdfBuffer = await page.pdf({ 
-            format: 'A4', 
+        // Set the structured HTML content
+        await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
+        
+        // Output clean A4 PDF profile binary
+        const pdfBuffer = await page.pdf({
+            format: 'A4',
             printBackground: true,
-            margin: { top: '20px', bottom: '20px' }
+            margin: { top: '0.4in', bottom: '0.4in', left: '0.4in', right: '0.4in' }
         });
-        
+
         await browser.close();
 
-        // Send PDF back to frontend
-        res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="Structured_Legacy_${reportType.split(' ')[0]}_Report.pdf"`
-        });
-        res.end(pdfBuffer);
+        // Send PDF blob response back to front-end browser context
+        res.contentType("application/pdf");
+        res.send(pdfBuffer);
 
     } catch (error) {
-        console.error("Puppeteer PDF Error:", error);
-        res.status(500).send("Error generating PDF");
+        console.error("Puppeteer Server PDF Error:", error);
+        res.status(500).json({ error: "Failed to compile document" });
     }
 });
 

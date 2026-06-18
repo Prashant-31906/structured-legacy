@@ -554,90 +554,65 @@
         reportSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // ================= CLIENT-SIDE PDF GENERATOR ================= //
+// ================= SEAMLESS BACKEND PUPPETEER TRIGGER ================= //
     async function downloadPDF() {
         Swal.fire({
             title: 'Generating Report...',
-            html: 'Compiling your financial forecasting data.',
+            html: 'Connecting to server engine to print your premium PDF configuration.',
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
         });
 
         let reportName = currentMode === 'sip' ? 'Monthly SIP' : (currentMode === 'yearly' ? 'Annual SIP' : 'One-Time Lumpsum');
-        
-        const reportElement = document.createElement('div');
-        reportElement.innerHTML = `
-            <div style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #0a192f; background: #ffffff;">
-                <h1 style="color: #0d47a1; text-align: center; margin-bottom: 5px; font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">
-                    Structured Legacy
-                </h1>
-                <h3 style="text-align: center; color: #475569; margin-top: 0; margin-bottom: 30px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px;">
-                    ${reportName} Forecast Report
-                </h3>
-                
-                <div style="display: flex; justify-content: space-between; margin-bottom: 30px; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
-                    <div style="text-align: center; width: 30%;">
-                        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold;">Total Invested</span><br>
-                        <strong style="font-size: 18px; color: #0f172a;">${document.getElementById('display-invested').innerText}</strong>
-                    </div>
-                    <div style="text-align: center; width: 30%; border-left: 1px solid #cbd5e1; border-right: 1px solid #cbd5e1;">
-                        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold;">Est. Returns</span><br>
-                        <strong style="font-size: 18px; color: #16a34a;">${document.getElementById('display-returns').innerText}</strong>
-                    </div>
-                    <div style="text-align: center; width: 30%;">
-                        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #0d47a1; font-weight: bold;">Total Wealth</span><br>
-                        <strong style="font-size: 22px; color: #0d47a1;">${document.getElementById('display-total').innerText}</strong>
-                    </div>
-                </div>
 
-                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 12px;">
-                    <thead>
-                        <tr style="background-color: #0a192f; color: white;">
-                            <th style="padding: 12px; border: 1px solid #1e293b;">Year</th>
-                            <th style="padding: 12px; border: 1px solid #1e293b;">Phase</th>
-                            <th style="padding: 12px; border: 1px solid #1e293b;">Total Invested</th>
-                            <th style="padding: 12px; border: 1px solid #1e293b;">Est. Returns</th>
-                            <th style="padding: 12px; border: 1px solid #1e293b;">End Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${reportDataRows.map((row, index) => `
-                            <tr style="background-color: ${row.phaseStr === 'Hold' ? '#eef2ff' : (index % 2 === 0 ? '#f8fafc' : '#ffffff')};">
-                                <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold;">${row.year}</td>
-                                <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold; color: ${row.phaseStr === 'Hold' ? '#4338ca' : '#475569'};">${row.phaseStr}</td>
-                                <td style="padding: 10px; border: 1px solid #e2e8f0;">${row.invested}</td>
-                                <td style="padding: 10px; border: 1px solid #e2e8f0; color: #16a34a;">${row.returns}</td>
-                                <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold; color: #0d47a1;">${row.total}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-
-                <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center;">
-                    <p style="font-size: 10px; color: #94a3b8; margin: 0;">
-                        <strong>Disclaimer:</strong> The estimates provided in this report are for educational purposes. Actual performance may vary.
-                    </p>
-                    <p style="font-size: 10px; color: #94a3b8; margin-top: 5px;">
-                        Generated securely by <strong>Structured Legacy</strong> | www.structuredlegacy.com
-                    </p>
-                </div>
-            </div>
-        `;
-
-        const opt = {
-            margin:       0,
-            filename:     `Structured_Legacy_${reportName.replace(' ', '_')}_Forecast.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        // Prepare structured payload parameters for backend routing
+        const payload = {
+            reportType: `${reportName} Forecast Masterclass`,
+            invested: document.getElementById('display-invested').innerText,
+            returns: document.getElementById('display-returns').innerText,
+            total: document.getElementById('display-total').innerText,
+            rows: reportDataRows // Captured from generation looping sequence
         };
 
         try {
-            await html2pdf().set(opt).from(reportElement).save();
-            Swal.fire({ icon: 'success', title: 'Downloaded!', text: 'Your PDF report is ready.', confirmButtonColor: '#0d47a1' });
+            const response = await fetch('/api/download-pdf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error('Server compilation pipeline broke');
+
+            // Receive binary file context array stream
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            
+            // Invisible anchor context download execution trigger
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `Structured_Legacy_${reportName.replace(/ /g, '_')}_Report.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean dynamic references layout nodes array allocation
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Report Compiled!',
+                text: 'Your corporate wealth forecast matrix PDF downloaded successfully.',
+                confirmButtonColor: '#0d47a1'
+            });
+
         } catch (error) {
-            console.error("PDF Error: ", error);
-            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Failed to generate PDF.' });
+            console.error("PDF System Error:", error);
+            Swal.fire({ 
+                icon: 'error', 
+                title: 'Execution Failed', 
+                text: 'Something broke inside the server container process.' 
+            });
         }
     }
 
