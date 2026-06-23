@@ -84,6 +84,10 @@
 
     details > summary { list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
+    
+    .master-tab.active { background-color: #0d47a1; color: white; box-shadow: 0 4px 6px rgba(13,71,161,0.2); }
+    .master-tab.inactive { background-color: transparent; color: #4b5563; }
+    .master-tab.inactive:hover { background-color: #f3f4f6; }
 </style>
 
 <div id="loader" class="fixed inset-0 z-[100] bg-[#f8fafc] flex flex-col items-center justify-center">
@@ -116,10 +120,25 @@
         </div>
     </section>
 
-    <!-- 2. THE CALCULATOR COMPONENT -->
-    <section class="py-16 relative z-10 -mt-16">
+    <!-- MASTER TABS -->
+    <section class="relative z-20 -mt-24 mb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 p-6 md:p-12">
+            <div class="flex justify-center">
+                <div class="bg-white p-2 rounded-2xl shadow-lg border border-gray-100 flex flex-wrap justify-center gap-2">
+                    <button onclick="switchMasterTab('wealth')" id="master-tab-wealth" class="master-tab active py-3 px-6 rounded-xl font-bold transition-all">Wealth Estimator</button>
+                    <button onclick="switchMasterTab('target')" id="master-tab-target" class="master-tab inactive py-3 px-6 rounded-xl font-bold transition-all">Target Planner</button>
+                    <button onclick="switchMasterTab('tax')" id="master-tab-tax" class="master-tab inactive py-3 px-6 rounded-xl font-bold transition-all">Income Tax Calc</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. THE CALCULATORS COMPONENT -->
+    <section class="py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- SECTION 1: WEALTH ESTIMATOR -->
+            <div id="section-wealth" class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 p-6 md:p-12 block">
                 <div class="text-center mb-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">Master Investment Estimator</h2>
                     <p class="text-gray-500 text-sm">Toggle between Monthly, Annual, or One-Time investments.</p>
@@ -189,6 +208,21 @@
                             <input type="range" id="range-hold" min="0" max="40" step="1" value="0" class="w-full mt-2" oninput="updateInput('hold'); calculate()">
                         </div>
 
+                        <!-- Input 5: Step Up (Hidden in Lumpsum) -->
+                        <div id="stepup-container">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <label class="font-bold text-gray-800 text-lg block">Annual Step-up</label>
+                                    <span class="text-xs text-gray-500">Increase investment yearly by %</span>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/3 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <input type="number" id="input-stepup" value="0" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('stepup'); calculate()">
+                                    <span class="text-[#0d47a1] font-bold ml-2">%</span>
+                                </div>
+                            </div>
+                            <input type="range" id="range-stepup" min="0" max="50" step="1" value="0" class="w-full mt-2" oninput="updateInput('stepup'); calculate()">
+                        </div>
+
                         <button onclick="generateReport()" class="w-full mt-8 bg-[#0d47a1] hover:bg-blue-800 text-white font-black py-4 rounded-2xl shadow-[0_8px_20px_rgba(13,71,161,0.25)] hover:-translate-y-1 transition-all uppercase tracking-widest text-sm flex justify-center items-center border-2 border-[#0d47a1]">
                             Generate Projection Report <i class="fas fa-file-alt ml-3 text-lg"></i>
                         </button>
@@ -219,6 +253,125 @@
                     </div>
                 </div>
             </div>
+
+            <!-- SECTION 2: TARGET PLANNER -->
+            <div id="section-target" class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 p-6 md:p-12 hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Target Amount Planner</h2>
+                    <p class="text-gray-500 text-sm">Find out how much you need to invest to reach your financial goal.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-5 space-y-8">
+                        <!-- Target Amount -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-800 text-lg">Target Wealth Amount</label>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/2 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <span class="text-[#0d47a1] font-bold mr-2">₹</span>
+                                    <input type="number" id="input-target" value="10000000" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('target'); calculateTarget()">
+                                </div>
+                            </div>
+                            <input type="range" id="range-target" min="100000" max="100000000" step="100000" value="10000000" class="w-full mt-2" oninput="updateInput('target'); calculateTarget()">
+                        </div>
+                        <!-- Rate -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-800 text-lg">Expected Return Rate</label>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/3 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <input type="number" id="input-target-rate" value="12" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('target-rate'); calculateTarget()">
+                                    <span class="text-[#0d47a1] font-bold ml-2">%</span>
+                                </div>
+                            </div>
+                            <input type="range" id="range-target-rate" min="1" max="50" step="0.5" value="12" class="w-full mt-2" oninput="updateInput('target-rate'); calculateTarget()">
+                        </div>
+                        <!-- Time -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-800 text-lg">Time to Goal</label>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/3 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <input type="number" id="input-target-years" value="15" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('target-years'); calculateTarget()">
+                                    <span class="text-[#0d47a1] font-bold ml-2">Yr</span>
+                                </div>
+                            </div>
+                            <input type="range" id="range-target-years" min="1" max="50" step="1" value="15" class="w-full mt-2" oninput="updateInput('target-years'); calculateTarget()">
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-7">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
+                            <div class="bg-[#f8fafc] border border-gray-200 rounded-2xl p-6 text-center shadow-sm flex flex-col justify-center">
+                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Required Monthly SIP</p>
+                                <h3 class="text-3xl font-black text-[#0d47a1]" id="req-sip">₹0</h3>
+                            </div>
+                            <div class="bg-[#f8fafc] border border-gray-200 rounded-2xl p-6 text-center shadow-sm flex flex-col justify-center">
+                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Required Annual SIP</p>
+                                <h3 class="text-3xl font-black text-indigo-600" id="req-annual">₹0</h3>
+                            </div>
+                            <div class="bg-[#f8fafc] border border-gray-200 rounded-2xl p-6 text-center shadow-sm flex flex-col justify-center">
+                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Required One-Time</p>
+                                <h3 class="text-3xl font-black text-green-600" id="req-lumpsum">₹0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: INCOME TAX CALCULATOR -->
+            <div id="section-tax" class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 p-6 md:p-12 hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Income Tax Calculator (FY 2024-25)</h2>
+                    <p class="text-gray-500 text-sm">Compare New Tax Regime vs Old Tax Regime.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-5 space-y-8">
+                        <!-- Income -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-800 text-lg">Gross Annual Income</label>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/2 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <span class="text-[#0d47a1] font-bold mr-2">₹</span>
+                                    <input type="number" id="input-tax-income" value="1500000" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('tax-income'); calculateTax()">
+                                </div>
+                            </div>
+                            <input type="range" id="range-tax-income" min="0" max="50000000" step="50000" value="1500000" class="w-full mt-2" oninput="updateInput('tax-income'); calculateTax()">
+                        </div>
+                        <!-- Deductions -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <label class="font-bold text-gray-800 text-lg block">Total Deductions</label>
+                                    <span class="text-xs text-gray-500">80C, 80D, HRA, etc. (For Old Regime)</span>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl flex items-center w-1/2 focus-within:ring-2 focus-within:ring-blue-500 transition">
+                                    <span class="text-[#0d47a1] font-bold mr-2">₹</span>
+                                    <input type="number" id="input-tax-deductions" value="150000" class="w-full bg-transparent border-none outline-none font-black text-gray-900 text-right text-lg" oninput="updateRange('tax-deductions'); calculateTax()">
+                                </div>
+                            </div>
+                            <input type="range" id="range-tax-deductions" min="0" max="1500000" step="10000" value="150000" class="w-full mt-2" oninput="updateInput('tax-deductions'); calculateTax()">
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-7">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center shadow-sm">
+                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-2">Old Tax Regime</p>
+                                <h3 class="text-3xl font-black text-gray-900" id="tax-old">₹0</h3>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 text-center shadow-sm">
+                                <p class="text-sm font-bold text-[#0d47a1] uppercase tracking-widest mb-2">New Tax Regime</p>
+                                <h3 class="text-3xl font-black text-[#0d47a1]" id="tax-new">₹0</h3>
+                            </div>
+                        </div>
+                        <div class="bg-[#0a192f] rounded-2xl p-6 text-center shadow-xl border border-[#0d47a1]">
+                            <p class="text-sm font-bold text-[#d4af37] uppercase tracking-widest mb-2">Recommendation</p>
+                            <h2 class="text-2xl font-black text-white" id="tax-recommendation">Calculating...</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -360,6 +513,37 @@
 <script>
     let currentMode = 'sip'; // sip, yearly, lumpsum
     let wealthChart;
+
+    function switchMasterTab(tab) {
+        // Hide all sections
+        document.getElementById('section-wealth').classList.add('hidden');
+        document.getElementById('section-wealth').classList.remove('block');
+        document.getElementById('section-target').classList.add('hidden');
+        document.getElementById('section-target').classList.remove('block');
+        document.getElementById('section-tax').classList.add('hidden');
+        document.getElementById('section-tax').classList.remove('block');
+
+        // Reset all tabs
+        const tabs = ['wealth', 'target', 'tax'];
+        tabs.forEach(t => {
+            const el = document.getElementById(`master-tab-${t}`);
+            el.classList.remove('active');
+            el.classList.add('inactive');
+        });
+
+        // Activate selected
+        document.getElementById(`section-${tab}`).classList.remove('hidden');
+        document.getElementById(`section-${tab}`).classList.add('block');
+        document.getElementById(`master-tab-${tab}`).classList.remove('inactive');
+        document.getElementById(`master-tab-${tab}`).classList.add('active');
+
+        // Hide report section if not on wealth
+        if(tab !== 'wealth') document.getElementById('report-section').classList.add('hidden');
+        
+        if(tab === 'wealth') calculate();
+        if(tab === 'target') calculateTarget();
+        if(tab === 'tax') calculateTax();
+    }
     let reportDataRows = []; 
     let finalPhase1Value = 0; // Stores value after investment phase
 
@@ -380,11 +564,13 @@
         const labelAmount = document.getElementById('label-amount');
         const labelYears = document.getElementById('label-years');
         const holdContainer = document.getElementById('hold-period-container');
+        const stepupContainer = document.getElementById('stepup-container');
 
         if(mode === 'sip') {
             labelAmount.innerText = 'Monthly Investment';
             labelYears.innerText = 'Investment Period';
             holdContainer.style.display = 'block';
+            stepupContainer.style.display = 'block';
             if(document.getElementById('input-amount').value >= 100000) {
                 document.getElementById('input-amount').value = 25000;
                 document.getElementById('range-amount').value = 25000;
@@ -393,6 +579,7 @@
             labelAmount.innerText = 'Annual Investment';
             labelYears.innerText = 'Investment Period';
             holdContainer.style.display = 'block';
+            stepupContainer.style.display = 'block';
             if(document.getElementById('input-amount').value <= 50000) {
                 document.getElementById('input-amount').value = 300000;
                 document.getElementById('range-amount').value = 300000;
@@ -401,6 +588,9 @@
             labelAmount.innerText = 'One-Time Lumpsum';
             labelYears.innerText = 'Total Duration';
             holdContainer.style.display = 'none'; // Hide hold period for pure lumpsum
+            stepupContainer.style.display = 'none'; // No step up for lumpsum
+            document.getElementById('input-stepup').value = 0;
+            document.getElementById('range-stepup').value = 0;
             document.getElementById('input-hold').value = 0;
             document.getElementById('range-hold').value = 0;
             if(document.getElementById('input-amount').value <= 100000) {
@@ -418,20 +608,30 @@
         const rate = parseFloat(document.getElementById('input-rate').value) || 0;
         const invYears = parseFloat(document.getElementById('input-years').value) || 0;
         const holdYears = currentMode === 'lumpsum' ? 0 : (parseFloat(document.getElementById('input-hold').value) || 0);
+        const stepUp = currentMode === 'lumpsum' ? 0 : (parseFloat(document.getElementById('input-stepup').value) || 0);
 
         let totalInvested = 0;
         finalPhase1Value = 0;
 
         // --- PHASE 1: INVESTMENT ---
         if (currentMode === 'sip') {
-            const months = invYears * 12;
             const monthlyRate = rate / 12 / 100;
-            totalInvested = amount * months;
-            finalPhase1Value = monthlyRate === 0 ? totalInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+            let currentMonthlySIP = amount;
+            for(let y=1; y<=invYears; y++) {
+                totalInvested += currentMonthlySIP * 12;
+                for(let m=1; m<=12; m++) {
+                    finalPhase1Value = (finalPhase1Value + currentMonthlySIP) * (1 + monthlyRate);
+                }
+                currentMonthlySIP = currentMonthlySIP * (1 + stepUp/100);
+            }
         } else if (currentMode === 'yearly') {
             const yearlyRate = rate / 100;
-            totalInvested = amount * invYears;
-            finalPhase1Value = yearlyRate === 0 ? totalInvested : amount * ((Math.pow(1 + yearlyRate, invYears) - 1) / yearlyRate) * (1 + yearlyRate);
+            let currentAnnualSIP = amount;
+            for(let y=1; y<=invYears; y++) {
+                totalInvested += currentAnnualSIP;
+                finalPhase1Value = (finalPhase1Value + currentAnnualSIP) * (1 + yearlyRate);
+                currentAnnualSIP = currentAnnualSIP * (1 + stepUp/100);
+            }
         } else { // lumpsum
             const yearlyRate = rate / 100;
             totalInvested = amount;
@@ -487,6 +687,7 @@
         const rate = parseFloat(document.getElementById('input-rate').value) || 0;
         const invYears = parseFloat(document.getElementById('input-years').value) || 0;
         const holdYears = currentMode === 'lumpsum' ? 0 : (parseFloat(document.getElementById('input-hold').value) || 0);
+        const stepUp = currentMode === 'lumpsum' ? 0 : (parseFloat(document.getElementById('input-stepup').value) || 0);
         const totalYears = invYears + holdYears;
 
         const tbody = document.getElementById('report-table-body');
@@ -496,6 +697,9 @@
         let cumulativeInvested = 0;
         let cumulativeValue = 0;
         let phaseLabel = "";
+        
+        let currentMonthlySIP = amount;
+        let currentAnnualSIP = amount;
 
         for (let y = 1; y <= totalYears; y++) {
             
@@ -503,14 +707,17 @@
                 // Investment Phase
                 phaseLabel = `<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Investing</span>`;
                 if (currentMode === 'sip') {
-                    const months = y * 12;
                     const monthlyRate = rate / 12 / 100;
-                    cumulativeInvested = amount * months;
-                    cumulativeValue = monthlyRate === 0 ? cumulativeInvested : amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+                    cumulativeInvested += currentMonthlySIP * 12;
+                    for(let m=1; m<=12; m++) {
+                        cumulativeValue = (cumulativeValue + currentMonthlySIP) * (1 + monthlyRate);
+                    }
+                    currentMonthlySIP = currentMonthlySIP * (1 + stepUp/100);
                 } else if (currentMode === 'yearly') {
                     const yearlyRate = rate / 100;
-                    cumulativeInvested = amount * y;
-                    cumulativeValue = yearlyRate === 0 ? cumulativeInvested : amount * ((Math.pow(1 + yearlyRate, y) - 1) / yearlyRate) * (1 + yearlyRate);
+                    cumulativeInvested += currentAnnualSIP;
+                    cumulativeValue = (cumulativeValue + currentAnnualSIP) * (1 + yearlyRate);
+                    currentAnnualSIP = currentAnnualSIP * (1 + stepUp/100);
                 } else { // lumpsum
                     const yearlyRate = rate / 100;
                     cumulativeInvested = amount;
@@ -616,11 +823,94 @@
         }
     }
 
+    function calculateTarget() {
+        const target = parseFloat(document.getElementById('input-target').value) || 0;
+        const rate = parseFloat(document.getElementById('input-target-rate').value) || 0;
+        const years = parseFloat(document.getElementById('input-target-years').value) || 0;
+
+        const monthlyRate = rate / 12 / 100;
+        const months = years * 12;
+        
+        // Target SIP formula: PMT = FV * (r / ((1+r)^n - 1)) / (1+r)
+        let reqSIP = 0;
+        if(monthlyRate > 0) {
+            reqSIP = target * (monthlyRate / (Math.pow(1 + monthlyRate, months) - 1)) / (1 + monthlyRate);
+        } else {
+            reqSIP = target / months;
+        }
+
+        const yearlyRate = rate / 100;
+        let reqAnnual = 0;
+        if(yearlyRate > 0) {
+            reqAnnual = target * (yearlyRate / (Math.pow(1 + yearlyRate, years) - 1)) / (1 + yearlyRate);
+        } else {
+            reqAnnual = target / years;
+        }
+
+        let reqLumpsum = 0;
+        if(yearlyRate > 0) {
+            reqLumpsum = target / Math.pow(1 + yearlyRate, years);
+        } else {
+            reqLumpsum = target;
+        }
+
+        document.getElementById('req-sip').innerText = '₹' + formatCurrency(reqSIP);
+        document.getElementById('req-annual').innerText = '₹' + formatCurrency(reqAnnual);
+        document.getElementById('req-lumpsum').innerText = '₹' + formatCurrency(reqLumpsum);
+    }
+
+    function calculateTax() {
+        const income = parseFloat(document.getElementById('input-tax-income').value) || 0;
+        const deductions = parseFloat(document.getElementById('input-tax-deductions').value) || 0;
+        
+        // Old Regime calculation (simplified 2024-25)
+        let taxableOld = Math.max(0, income - deductions - 50000); // 50k standard deduction
+        let taxOld = 0;
+        if(taxableOld > 500000) { // 87A rebate up to 5L
+            if(taxableOld > 250000) taxOld += Math.min(250000, taxableOld - 250000) * 0.05;
+            if(taxableOld > 500000) taxOld += Math.min(500000, taxableOld - 500000) * 0.20;
+            if(taxableOld > 1000000) taxOld += (taxableOld - 1000000) * 0.30;
+        }
+        taxOld = taxOld * 1.04; // 4% cess
+
+        // New Regime calculation (2024-25 slabs)
+        let taxableNew = Math.max(0, income - 75000); // 75k standard deduction for new regime
+        let taxNew = 0;
+        if(taxableNew > 700000) { // 87A rebate up to 7L
+            if(taxableNew > 300000) taxNew += Math.min(400000, taxableNew - 300000) * 0.05; // 3L to 7L @ 5%
+            if(taxableNew > 700000) taxNew += Math.min(300000, taxableNew - 700000) * 0.10; // 7L to 10L @ 10%
+            if(taxableNew > 1000000) taxNew += Math.min(200000, taxableNew - 1000000) * 0.15; // 10L to 12L @ 15%
+            if(taxableNew > 1200000) taxNew += Math.min(300000, taxableNew - 1200000) * 0.20; // 12L to 15L @ 20%
+            if(taxableNew > 1500000) taxNew += (taxableNew - 1500000) * 0.30; // >15L @ 30%
+        }
+        taxNew = taxNew * 1.04; // 4% cess
+
+        document.getElementById('tax-old').innerText = '₹' + formatCurrency(taxOld);
+        document.getElementById('tax-new').innerText = '₹' + formatCurrency(taxNew);
+
+        const recEl = document.getElementById('tax-recommendation');
+        if(taxOld < taxNew) {
+            recEl.innerText = 'Opt for Old Regime';
+            recEl.className = 'text-2xl font-black text-green-400';
+        } else if (taxNew < taxOld) {
+            recEl.innerText = 'Opt for New Regime';
+            recEl.className = 'text-2xl font-black text-green-400';
+        } else {
+            recEl.innerText = 'Both are equal';
+            recEl.className = 'text-2xl font-black text-white';
+        }
+    }
+
     window.addEventListener('load', () => {
         setTimeout(() => {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; calculate(); }, 600);
+            setTimeout(() => { 
+                loader.style.display = 'none'; 
+                calculate(); 
+                calculateTarget();
+                calculateTax();
+            }, 600);
         }, 1000); 
     });
 </script>
