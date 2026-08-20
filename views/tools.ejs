@@ -15,7 +15,7 @@
       "@type": "SoftwareApplication",
       "name": "Structured Legacy Advanced Wealth Calculators",
       "applicationCategory": "BusinessApplication",
-      "description": "Advanced financial planning tools including Monthly SIP, Annual SIP, and Lumpsum calculators with Invest & Hold period forecasting.",
+      "description": "Advanced financial planning tools including Monthly SIP, Annual Investment, and Lumpsum calculators with Invest & Hold period forecasting.",
       "operatingSystem": "Web",
       "provider": {
         "@type": "Organization",
@@ -27,10 +27,10 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is an Annual SIP Calculator?",
+          "name": "What is an Annual Investment Calculator?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "An Annual SIP Calculator helps you forecast the growth of a fixed lumpsum amount invested once every year, utilizing the power of annual compounding."
+            "text": "An Annual Investment Calculator helps you forecast the growth of a fixed lumpsum amount invested once every year, utilizing the power of annual compounding."
           }
         },
         {
@@ -103,7 +103,7 @@
         
         <div class="absolute inset-0 bg-gradient-to-b from-[#0a192f]/90 via-[#0a192f]/80 to-transparent z-0"></div>
         <div class="absolute top-1/4 left-0 w-full overflow-hidden flex z-0 opacity-40 pointer-events-none">
-            <div class="kinetic-text">WEALTH CREATION • FORECASTING • ANNUAL SIP • INVEST & HOLD STRATEGY</div>
+            <div class="kinetic-text">WEALTH CREATION • FORECASTING • Annual Investment • INVEST & HOLD STRATEGY</div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
@@ -148,7 +148,7 @@
                 <div class="flex justify-center mb-10">
                     <div class="bg-gray-100 p-2 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 w-full max-w-3xl rounded-2xl border border-gray-200">
                         <button id="tab-sip" class="flex-1 py-3 px-2 font-bold text-white bg-[#0d47a1] rounded-xl shadow-md transition-all duration-300" onclick="switchCalc('sip')">Monthly SIP</button>
-                        <button id="tab-yearly" class="flex-1 py-3 px-2 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300" onclick="switchCalc('yearly')">Annual SIP</button>
+                        <button id="tab-yearly" class="flex-1 py-3 px-2 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300" onclick="switchCalc('yearly')">Annual Investment</button>
                         <button id="tab-lumpsum" class="flex-1 py-3 px-2 font-bold text-gray-600 hover:text-gray-900 hover:bg-white rounded-xl transition-all duration-300" onclick="switchCalc('lumpsum')">One-Time Lumpsum</button>
                     </div>
                 </div>
@@ -305,7 +305,7 @@
                                 <h3 class="text-3xl font-black text-[#0d47a1]" id="req-sip">₹0</h3>
                             </div>
                             <div class="bg-[#f8fafc] border border-gray-200 rounded-2xl p-6 text-center shadow-sm flex flex-col justify-center">
-                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Required Annual SIP</p>
+                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Required Annual Investment</p>
                                 <h3 class="text-3xl font-black text-indigo-600" id="req-annual">₹0</h3>
                             </div>
                             <div class="bg-[#f8fafc] border border-gray-200 rounded-2xl p-6 text-center shadow-sm flex flex-col justify-center">
@@ -424,9 +424,9 @@
                     </div>
 
                     <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 shadow-inner">
-                        <h3 class="text-2xl font-black text-gray-900 mb-4">Annual SIP vs Monthly SIP</h3>
+                        <h3 class="text-2xl font-black text-gray-900 mb-4">Annual Investment vs Monthly SIP</h3>
                         <p class="text-gray-700 leading-relaxed mb-4 text-justify">
-                            While Monthly SIPs are great for salaried professionals, <strong>Annual SIPs</strong> (investing a lumpsum amount once a year) are highly preferred by business owners who receive yearly dividends or bonuses. An Annual SIP allows for bulk market participation at the start of every financial year.
+                            While Monthly SIPs are great for salaried professionals, <strong>Annual Investments</strong> (investing a lumpsum amount once a year) are highly preferred by business owners who receive yearly dividends or bonuses. An Annual Investment allows for bulk market participation at the start of every financial year.
                         </p>
                     </div>
                 </div>
@@ -471,11 +471,11 @@
             <div class="space-y-4">
                 <details class="group bg-white border border-gray-200 rounded-2xl open:shadow-md transition-all duration-300" open>
                     <summary class="flex justify-between items-center font-bold p-6 md:p-8 text-gray-900 cursor-pointer text-lg">
-                        <span>What is an Annual SIP Calculator?</span>
+                        <span>What is an Annual Investment Calculator?</span>
                         <span class="transition-transform duration-300 group-open:rotate-180 text-[#0d47a1] bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 ml-4"><i class="fas fa-chevron-down"></i></span>
                     </summary>
                     <div class="text-gray-700 p-6 md:p-8 pt-0 leading-relaxed text-base border-t border-gray-100 mt-2">
-                        An Annual SIP Calculator helps you forecast the growth of a fixed lumpsum amount invested once every year, utilizing the power of annual compounding. It is perfect for business owners.
+                        An Annual Investment Calculator helps you forecast the growth of a fixed lumpsum amount invested once every year, utilizing the power of annual compounding. It is perfect for business owners.
                     </div>
                 </details>
                 
@@ -770,7 +770,7 @@
             didOpen: () => { Swal.showLoading(); }
         });
 
-        let reportName = currentMode === 'sip' ? 'Monthly SIP' : (currentMode === 'yearly' ? 'Annual SIP' : 'One-Time Lumpsum');
+        let reportName = currentMode === 'sip' ? 'Monthly SIP' : (currentMode === 'yearly' ? 'Annual Investment' : 'One-Time Lumpsum');
 
         // Prepare structured payload parameters for backend routing
         const payload = {
