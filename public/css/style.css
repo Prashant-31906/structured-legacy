@@ -1149,10 +1149,6 @@ video {
   width: 12rem;
 }
 
-.w-64 {
-  width: 16rem;
-}
-
 .w-8 {
   width: 2rem;
 }
@@ -1195,6 +1191,10 @@ video {
 
 .max-w-7xl {
   max-width: 80rem;
+}
+
+.max-w-\[320px\] {
+  max-width: 320px;
 }
 
 .max-w-lg {
@@ -1532,10 +1532,6 @@ video {
   border-width: 4px;
 }
 
-.border-8 {
-  border-width: 8px;
-}
-
 .border-b {
   border-bottom-width: 1px;
 }
@@ -1619,11 +1615,6 @@ video {
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
-}
-
-.border-gray-50 {
-  --tw-border-opacity: 1;
-  border-color: rgb(249 250 251 / var(--tw-border-opacity, 1));
 }
 
 .border-gray-700 {
@@ -2014,9 +2005,9 @@ video {
      object-fit: cover;
 }
 
-.object-top {
-  -o-object-position: top;
-     object-position: top;
+.object-center {
+  -o-object-position: center;
+     object-position: center;
 }
 
 .p-10 {
@@ -2920,12 +2911,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.hover\:scale-105:hover {
-  --tw-scale-x: 1.05;
-  --tw-scale-y: 1.05;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .hover\:border-\[\#0d47a1\]:hover {
   --tw-border-opacity: 1;
   border-color: rgb(13 71 161 / var(--tw-border-opacity, 1));
@@ -3106,6 +3091,12 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.group:hover .group-hover\:scale-105 {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .group:hover .group-hover\:scale-110 {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -3245,16 +3236,16 @@ video {
     width: 66.666667%;
   }
 
-  .md\:w-80 {
-    width: 20rem;
-  }
-
   .md\:w-\[calc\(50\%-2\.5rem\)\] {
     width: calc(50% - 2.5rem);
   }
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:max-w-\[340px\] {
+    max-width: 340px;
   }
 
   .md\:grid-cols-2 {
