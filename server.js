@@ -108,6 +108,19 @@ app.get('/privacy', (req, res) => {
     res.redirect('/privacy-policy');
 });
 
+// 8. Terms and Conditions Route
+app.get('/terms-and-conditions', (req, res) => {
+    res.render('terms-and-conditions', { 
+        title: 'Terms and Conditions | Structured Legacy',
+        description: 'Terms and Conditions governing your access and use of Structured Legacy website, resources, and financial calculators.'
+    });
+});
+
+// Aliases for /terms and /terms-of-service
+app.get(['/terms', '/terms-of-service'], (req, res) => {
+    res.redirect('/terms-and-conditions');
+});
+
 // ================= STATIC SERVICES DATABASE (For Dynamic SEO & Pages) ================= //
 const servicesDatabase = [
     {
