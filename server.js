@@ -95,6 +95,19 @@ app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact Us | Structured Legacy' });
 });
 
+// 7. Privacy Policy Route
+app.get('/privacy-policy', (req, res) => {
+    res.render('privacy-policy', { 
+        title: 'Privacy Policy | Structured Legacy',
+        description: 'Structured Legacy respects your privacy and is committed to protecting the personal information you share with us.'
+    });
+});
+
+// Alias for /privacy
+app.get('/privacy', (req, res) => {
+    res.redirect('/privacy-policy');
+});
+
 // ================= STATIC SERVICES DATABASE (For Dynamic SEO & Pages) ================= //
 const servicesDatabase = [
     {
