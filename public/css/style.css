@@ -3159,6 +3159,11 @@ video {
   .sm\:text-left {
     text-align: left;
   }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 }
 
 @media (min-width: 768px) {
