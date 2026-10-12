@@ -379,7 +379,7 @@ app.post('/api/contact', async (req, res) => {
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
                     <div style="text-align: center; margin-bottom: 30px;">
                         <h1 style="color: #0d47a1; margin: 0; font-size: 28px; letter-spacing: -0.5px;">STRUCTURED<span style="color: #1a202c; font-weight: 300;">LEGACY</span></h1>
-                        <p style="color: #64748b; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Protecting Wealth. Preserving Legacy.</p>
+                        <p style="color: #64748b; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Helping Business Families Build a Legacy That Lasts.</p>
                     </div>
                     
                     <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
